@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyEFRM — EFRM Preparation | Guideline-Based Reasoning & OSCE Training</title>
+<meta name="description" content="EFRM Part 1 & Part 2 OSCE preparation. Guideline-anchored, OSCE-oriented clinical reasoning training. Vantage-Point System. Real clinical cases. Structured mentorship cohort.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#4f9eac;--ocean:#6ab2c8;--sage:#9fd0bc;--mint:#b8e8d8;
+  --fog:#eaf4f0;--petal:#d8f0e8;--sky:#e0f2f8;--white:#f8fcfb;
+  --ink:#1a3530;--mid:#3a6358;--soft:#578a7e;--accent:#3ea888;
+  --warn:#e8a330;--danger:#d45f5f;--purple:#7850b0;--lock:#8860c0;
+  --cs:0 2px 24px rgba(26,53,48,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden}
+.page{display:none}.page.active{display:block}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,252,251,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(159,208,188,.18);padding:12px 36px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--teal);font-weight:600;cursor:pointer}
+.nav-r{display:flex;align-items:center;gap:4px}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{text-decoration:none;font-size:.74rem;color:var(--mid);font-weight:500;padding:6px 11px;border-radius:16px;transition:all .2s;cursor:pointer;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{background:rgba(79,158,172,.1);color:var(--teal)}
+.nav-cta{background:var(--teal);color:white;font-size:.72rem;font-weight:600;padding:7px 15px;border-radius:16px;border:none;cursor:pointer;transition:all .2s;white-space:nowrap;margin-left:8px}
+.nav-cta:hover{background:var(--ocean);transform:translateY(-1px)}
+
+/* SHARED */
+.sec{padding:72px 56px;max-width:1120px;margin:0 auto}
+.sec-sm{padding:60px 56px;max-width:960px;margin:0 auto}
+.sl{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.st{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3vw,2.8rem);color:var(--ink);line-height:1.12;margin-bottom:14px}
+.ss{font-size:.88rem;color:var(--soft);font-weight:300;line-height:1.8;max-width:580px;margin-bottom:40px}
+.bg-fog{background:linear-gradient(180deg,var(--fog),var(--white))}
+.bg-petal{background:linear-gradient(180deg,var(--white),var(--petal))}
+.bg-sky{background:linear-gradient(180deg,var(--sky),var(--fog))}
+.card{background:white;border-radius:16px;box-shadow:var(--cs);border:1px solid rgba(159,208,188,.2)}
+.fade-up{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* GATE MODAL */
+#gate-modal{display:none;position:fixed;inset:0;z-index:1000;background:rgba(26,53,48,.65);backdrop-filter:blur(8px);align-items:center;justify-content:center}
+#gate-modal.open{display:flex}
+.gate-box{background:white;border-radius:22px;padding:40px 44px;max-width:420px;width:90%;text-align:center;box-shadow:0 24px 80px rgba(26,53,48,.2)}
+.gate-box h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--ink);margin-bottom:10px}
+.gate-box p{font-size:.82rem;color:var(--soft);line-height:1.7;margin-bottom:22px}
+.gate-input{width:100%;padding:12px 16px;border:1.5px solid rgba(159,208,188,.4);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.84rem;color:var(--ink);outline:none;margin-bottom:10px;transition:border-color .2s}
+.gate-input:focus{border-color:var(--teal)}
+.gate-btn{width:100%;padding:12px;background:var(--teal);color:white;border:none;border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.84rem;font-weight:600;cursor:pointer;transition:all .2s;margin-bottom:10px}
+.gate-btn:hover{background:var(--ocean)}
+.gate-close{font-size:.74rem;color:var(--soft);cursor:pointer;text-decoration:underline}
+.gate-lock{font-size:2rem;margin-bottom:14px}
+.free-badge{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;background:#d8f5eb;color:#2d8a65;padding:3px 9px;border-radius:7px;font-weight:600}
+.gated-badge{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;background:#f0eaff;color:#6840a0;padding:3px 9px;border-radius:7px;font-weight:600}
+.lock-card{position:relative;overflow:hidden}
+.lock-overlay{position:absolute;inset:0;background:rgba(248,252,251,.93);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-radius:inherit;z-index:10;cursor:pointer;transition:all .2s}
+.lock-overlay:hover{background:rgba(248,252,251,.97)}
+.lo-icon{font-size:1.4rem}
+.lo-text{font-size:.72rem;font-family:'DM Mono',monospace;color:var(--lock);letter-spacing:1px;text-transform:uppercase;font-weight:500}
+.lo-sub{font-size:.68rem;color:var(--soft)}
+
+/* HERO */
+.hero{min-height:100vh;background:linear-gradient(158deg,#d4ecf5 0%,#c8e6dc 42%,#c0e6e2 100%);display:grid;grid-template-columns:1.1fr .9fr;align-items:center;padding:100px 56px 80px;gap:52px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(72,180,208,.1),transparent 68%);top:-350px;right:-250px;pointer-events:none}
+.hero-left{position:relative;z-index:1}
+.h-eye{font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.h-eye::before{content:'';width:22px;height:2px;background:var(--teal)}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,3.5vw,3.8rem);font-weight:600;line-height:1.06;color:var(--ink);margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--teal)}
+.hero-sub{font-size:.9rem;color:var(--mid);line-height:1.82;max-width:450px;margin-bottom:14px;font-weight:300}
+.hero-author{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--soft);letter-spacing:.7px;margin-bottom:30px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-p{background:var(--teal);color:white;font-size:.8rem;font-weight:600;padding:12px 24px;border-radius:26px;border:none;cursor:pointer;transition:all .25s;box-shadow:0 4px 18px rgba(79,158,172,.3)}
+.btn-p:hover{background:var(--ocean);transform:translateY(-2px)}
+.btn-g{background:rgba(255,255,255,.6);color:var(--mid);font-size:.8rem;font-weight:500;padding:12px 24px;border-radius:26px;border:1px solid rgba(79,158,172,.22);cursor:pointer;transition:all .25s;backdrop-filter:blur(6px)}
+.btn-g:hover{background:rgba(255,255,255,.9);transform:translateY(-2px)}
+.hero-right{position:relative;z-index:1}
+.system-card{background:rgba(255,255,255,.72);backdrop-filter:blur(14px);border-radius:22px;padding:26px;border:1px solid rgba(159,208,188,.28);box-shadow:0 8px 40px rgba(26,53,48,.08)}
+.sc-title{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--soft);margin-bottom:16px;text-align:center}
+.sc-row{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:11px;transition:background .2s}
+.sc-row:hover{background:rgba(159,208,188,.1)}
+.sc-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.88rem;flex-shrink:0}
+.sc-row h4{font-size:.76rem;font-weight:600;color:var(--ink);margin-bottom:1px}
+.sc-row p{font-size:.64rem;color:var(--soft);line-height:1.4}
+.sc-arrow{text-align:center;color:rgba(159,208,188,.5);font-size:.75rem;padding:2px 0}
+.sc-footer{margin-top:16px;padding-top:14px;border-top:1px solid rgba(159,208,188,.16);display:grid;grid-template-columns:1fr 1fr 1fr}
+.sc-stat{text-align:center}
+.sc-num{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:600;color:var(--teal);line-height:1}
+.sc-lbl{font-size:.56rem;font-family:'DM Mono',monospace;color:var(--soft);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.ico-1{background:linear-gradient(135deg,#c8e8f4,#b4dcea)}
+.ico-2{background:linear-gradient(135deg,#c4eadc,#aedeca)}
+.ico-3{background:linear-gradient(135deg,#d8e8f8,#c4d8f0)}
+.ico-4{background:linear-gradient(135deg,#e8e0f4,#d8ccea)}
+
+/* LADDER */
+.ladder{position:relative;padding-left:32px;margin-bottom:36px}
+.ladder::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--ocean),var(--sage),var(--accent),var(--purple))}
+.ladder-step{display:flex;gap:16px;align-items:flex-start;padding:12px 0;position:relative}
+.l-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;position:absolute;left:-32px;top:14px;display:flex;align-items:center;justify-content:center;font-size:.7rem}
+.l-body{flex:1;background:white;border-radius:12px;padding:13px 17px;box-shadow:var(--cs);border:1px solid rgba(159,208,188,.2);transition:transform .2s}
+.l-body:hover{transform:translateX(4px)}
+.l-body h4{font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px}
+.l-body p{font-size:.72rem;color:var(--soft);line-height:1.5}
+.l-current{border-color:var(--teal)!important;background:linear-gradient(135deg,#eef9fc,#e6f7f2)!important}
+.l-current h4{color:var(--teal)!important}
+.l-tag{font-family:'DM Mono',monospace;font-size:.58rem;padding:2px 8px;border-radius:6px;display:inline-block;margin-top:4px;font-weight:500}
+.lt-done{background:#d8f5eb;color:#2d8a65}
+.lt-now{background:#d4f0f8;color:#2a6a8a}
+.lt-future{background:#f0eaff;color:#6840a0}
+
+/* VANTAGE */
+.vp-intro{background:linear-gradient(135deg,#1a3530,#243f3a);border-radius:18px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden}
+.vp-intro::after{content:'"';position:absolute;right:16px;top:-24px;font-family:'Cormorant Garamond',serif;font-size:9rem;color:rgba(255,255,255,.04);pointer-events:none}
+.vp-intro h3{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:white;margin-bottom:10px}
+.vp-intro p{font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.8;max-width:600px}
+.vp-intro em{color:var(--mint);font-style:normal}
+.vp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.vp-card{border-radius:14px;padding:18px 20px;position:relative;overflow:hidden;border:1px solid transparent;transition:transform .2s}
+.vp-card:hover{transform:translateY(-3px)}
+.vp-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.vpc-1{background:#e4f5fc;border-color:rgba(114,180,208,.2)}.vpc-1::before{background:linear-gradient(90deg,#72b4d0,#5ba3b0)}
+.vpc-2{background:#e0f7ee;border-color:rgba(62,168,136,.2)}.vpc-2::before{background:linear-gradient(90deg,#3ea888,#2d8a65)}
+.vpc-3{background:#fef6e4;border-color:rgba(232,163,48,.2)}.vpc-3::before{background:linear-gradient(90deg,#e8a330,#d4820a)}
+.vpc-4{background:#f0eaff;border-color:rgba(120,80,176,.2)}.vpc-4::before{background:linear-gradient(90deg,#8860c0,#6840a0)}
+.vpc-5{background:#fce8e8;border-color:rgba(212,95,95,.2)}.vpc-5::before{background:linear-gradient(90deg,#d45f5f,#b04040)}
+.vp-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;opacity:.16;font-weight:600;line-height:1;margin-bottom:4px}
+.vp-angle{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;margin-bottom:6px}
+.vpc-1 .vp-angle{color:#5ba3b0}.vpc-2 .vp-angle{color:#2d8a65}.vpc-3 .vp-angle{color:#d4820a}.vpc-4 .vp-angle{color:#6840a0}.vpc-5 .vp-angle{color:#b04040}
+.vp-card h4{font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--ink);margin-bottom:5px;line-height:1.2}
+.vp-card p{font-size:.72rem;color:var(--soft);line-height:1.55}
+.vp-thread{margin-top:8px;display:flex;gap:5px;flex-wrap:wrap}
+.vpt{font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.6);color:var(--mid);font-weight:500}
+.vp-rule{background:var(--ink);color:white;border-radius:12px;padding:16px 20px}
+.vp-rule p{font-size:.78rem;line-height:1.78;color:rgba(255,255,255,.68)}
+.vp-rule strong{color:var(--mint)}
+
+/* INSIGHT */
+.insight{background:var(--ink);color:rgba(255,255,255,.85);border-radius:20px;padding:38px 48px;text-align:center;position:relative;overflow:hidden}
+.insight::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(72,180,208,.08),transparent 70%);top:-180px;right:-100px;pointer-events:none}
+.insight h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,2.5vw,2rem);color:white;margin-bottom:11px;position:relative;z-index:1}
+.insight p{font-size:.82rem;color:rgba(255,255,255,.56);line-height:1.82;max-width:520px;margin:0 auto;font-weight:300;position:relative;z-index:1}
+.insight em{color:var(--mint);font-style:normal;font-weight:500}
+
+footer{background:var(--ink);color:rgba(255,255,255,.3);text-align:center;padding:22px;font-size:.7rem;border-top:1px solid rgba(255,255,255,.04)}
+footer strong{color:var(--mint)}
+
+@media(max-width:860px){
+  .hero{grid-template-columns:1fr;padding:88px 24px 48px;gap:28px}
+  .hero-right{display:none}
+  .sec,.sec-sm{padding:44px 24px}
+  .vp-grid{grid-template-columns:1fr}
+  nav{padding:11px 20px}
+  .nav-links a{font-size:.68rem;padding:5px 8px}
+}
+</style>
+
+</style>
+</head>
+<body>
+
+<!-- GATE MODAL -->
+<div id="gate-modal">
+  <div class="gate-box">
+    <div id="gate-form-wrap">
+      <div class="gate-lock">🔐</div>
+      <h3>Request Access</h3>
+      <p>Submit your details. Access is reviewed and sent to your email within 24 hours. No payment required.</p>
+      <input class="gate-input" type="email" id="gate-email" placeholder="your@email.com" required>
+      <input class="gate-input" type="text" id="gate-name" placeholder="Full name">
+      <input class="gate-input" type="text" id="gate-country" placeholder="Country of training / practice">
+      <input class="gate-input" type="text" id="gate-stage" placeholder="Where are you in EFRM? (e.g. Part 1 prep, Part 2 prep, exploring)">
+      <button class="gate-btn" onclick="submitGate()">Request Access →</button>
+      <span class="gate-close" onclick="closeGate()">Maybe later</span>
+    </div>
+    <div id="gate-success" style="display:none;text-align:center;padding:8px 0">
+      <div style="font-size:2rem;margin-bottom:14px">✅</div>
+      <h3 style="margin-bottom:10px">Request received</h3>
+      <p style="font-size:.82rem;color:var(--soft);line-height:1.75;margin-bottom:16px">Access will be sent to your email within 24 hours after review.</p>
+      <span class="gate-close" onclick="closeGate()">Close</span>
+    </div>
+  </div>
+</div>
+
+<nav>
+  <span class="nav-brand" onclick="showPage('home')">StudyEFRM</span>
+  <div class="nav-r">
+    <ul class="nav-links">
+      <li><a id="nav-home" class="active" onclick="showPage('home')">Overview</a></li>
+      <li><a id="nav-about" onclick="showPage('about')">About</a></li>
+      <li><a id="nav-osce" onclick="showPage('osce')">OSCE Prep</a></li>
+      <li><a id="nav-part1" onclick="showPage('part1')">Part 1</a></li>
+      <li><a id="nav-cases" onclick="showPage('cases')">Cases</a></li>
+      <li><a id="nav-mentor" onclick="showPage('mentor')">Mentorship</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openGate()">Get Access →</button>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE 1: HOME ══════════ -->
+<div id="page-home" class="page active">
+<section class="hero">
+  <div class="hero-left">
+    <div class="h-eye">ESHRE · EBCOG · Fellowship Examination in Reproductive Medicine</div>
+    <h1>A dedicated<br><em>EFRM preparation</em><br>platform built for<br>guideline-based reasoning.</h1>
+    <p class="hero-sub">Not a notes website. Not a generic question bank. A cognitive training system built on clinical experience, real cases, and structured OSCE-style decision-making — anchored to current ESHRE guidelines and evidence-based practice.</p>
+    <div class="hero-author">Dr Shivansh Jaiswal · EFOG-EBCOG · EFRM Part 1 Passed March 2026 · 75.29% Paper 1 · 68.97% Paper 2</div>
+    <div class="hero-btns">
+      <button class="btn-p" onclick="showPage('osce')">EFRM Part 2 OSCE →</button>
+      <button class="btn-g" onclick="showPage('about')">Who built this</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="system-card">
+      <div class="sc-title">System Architecture</div>
+      <div class="sc-row"><div class="sc-ico ico-1">🔭</div><div><h4>Vantage-Point Learning</h4><p>Same concept · 5 angles · Subconscious encoding</p></div></div>
+      <div class="sc-arrow">↓</div>
+      <div class="sc-row"><div class="sc-ico ico-2">🧠</div><div><h4>Clinical Reasoning Engine</h4><p>PICO framework · ESHRE benchmarking · Real cases</p></div></div>
+      <div class="sc-arrow">↓</div>
+      <div class="sc-row"><div class="sc-ico ico-3">🎯</div><div><h4>OSCE Viva Simulation</h4><p>Adversarial probing · Multi-station viva preparation</p></div></div>
+      <div class="sc-arrow">↓</div>
+      <div class="sc-row"><div class="sc-ico ico-4">🏛️</div><div><h4>Structured Mentorship</h4><p>8-week cohort · Error loop · Thinking architect</p></div></div>
+      <div class="sc-footer">
+        <div class="sc-stat"><div class="sc-num">7</div><div class="sc-lbl">Domains</div></div>
+        <div class="sc-stat"><div class="sc-num">800+</div><div class="sc-lbl">Questions</div></div>
+        <div class="sc-stat"><div class="sc-num">15+</div><div class="sc-lbl">Live Cases</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-petal">
+<div class="sec">
+  <p class="sl">The Broader Vision</p>
+  <h2 class="st fade-up">EFRM is the entry point — not the ceiling</h2>
+  <p class="ss fade-up">Built for the full international OBG subspecialty ladder. EFRM first — because that is where the gap is greatest and the need most urgent.</p>
+  <div class="ladder fade-up">
+    <div class="ladder-step"><div class="l-dot" style="background:linear-gradient(135deg,#9fc8dc,#7ab8cc)">📝</div><div class="l-body"><h4>MRCOG Part 1</h4><p>Basic sciences. The written gateway to postgraduate OBG training.</p><span class="l-tag lt-future">Coming Q4 2026</span></div></div>
+    <div class="ladder-step"><div class="l-dot" style="background:linear-gradient(135deg,#7ab8cc,#5ba3b0)">📋</div><div class="l-body"><h4>MRCOG Part 2 / MRCPI Written / EBCOG Part 1</h4><p>Applied clinical knowledge. ESHRE guidelines begin to dominate.</p><span class="l-tag lt-future">Coming 2027</span></div></div>
+    <div class="ladder-step"><div class="l-dot" style="background:linear-gradient(135deg,#5ba3b0,#4aab8f)">🎭</div><div class="l-body"><h4>MRCOG Part 3 / MRCPI OSCE / EBCOG Part 2 OSCE</h4><p>Communication, clinical skills, structured viva.</p><span class="l-tag lt-future">Coming 2027</span></div></div>
+    <div class="ladder-step"><div class="l-dot" style="background:linear-gradient(135deg,#4aab8f,#38907a)">🔬</div><div class="l-body l-current"><h4>EFRM Part 1 + Part 2 OSCE ← You are here</h4><p>European subspecialty in Reproductive Medicine. The rarest credential in international IVF practice.</p><span class="l-tag lt-now">Full platform — live now</span></div></div>
+    <div class="ladder-step"><div class="l-dot" style="background:linear-gradient(135deg,#8860c0,#6840a0)">🏆</div><div class="l-body"><h4>ESGO / EDSRH / GESEA</h4><p>Gynaecological oncology, sexual health, genital surgery.</p><span class="l-tag lt-future">Roadmap</span></div></div>
+  </div>
+</div>
+</section>
+
+<section class="bg-fog">
+<div class="sec">
+  <p class="sl">Core Innovation</p>
+  <h2 class="st fade-up">The Vantage-Point System</h2>
+  <p class="ss fade-up">One concept. Five clinical angles. Different language every time. Not pattern recognition — subconscious encoding. The exam rotates vantage points deliberately. So does this system.</p>
+  <div class="vp-intro fade-up">
+    <h3>Why standard preparation fails</h3>
+    <p>When a mock uses the same wording, same demographics, same diagnostic structure — your brain switches from <em>concept retrieval</em> to <em>pattern recognition</em>. Mock scores inflate. Exam performance drops. You see "PCOS + AMH 8 + IVF" and click antagonist protocol without thinking. That is recall, not reasoning.</p>
+  </div>
+  <div class="vp-grid fade-up">
+    <div class="vp-card vpc-1"><div class="vp-num">01</div><div class="vp-angle">Vantage 1 — Physiology</div><h4>AMH as Ovarian Reserve Marker</h4><p>Secreted by granulosa cells of small antral follicles. Reflects the recruitable pool — not total primordial reserve.</p><div class="vp-thread"><span class="vpt">Station 1</span><span class="vpt">Endocrinology</span></div></div>
+    <div class="vp-card vpc-2"><div class="vp-num">02</div><div class="vp-angle">Vantage 2 — Protocol Decision</div><h4>AMH in Stimulation Strategy</h4><p>AMH 0.7 + AFC 4 = POSEIDON Group 3. Antagonist protocol, dual trigger — translating a number into a decision.</p><div class="vp-thread"><span class="vpt">Station 5</span><span class="vpt">Infertility</span></div></div>
+    <div class="vp-card vpc-3"><div class="vp-num">03</div><div class="vp-angle">Vantage 3 — Research Appraisal</div><h4>AMH as a Study Outcome</h4><p>When AMH appears as a primary outcome in an RCT — is it patient-relevant or a surrogate?</p><div class="vp-thread"><span class="vpt">Station 7</span><span class="vpt">Abstract appraisal</span></div></div>
+    <div class="vp-card vpc-4"><div class="vp-num">04</div><div class="vp-angle">Vantage 4 — Post-Surgical Context</div><h4>AMH After Ovarian Surgery</h4><p>Endometrioma cystectomy vs ablation — differential AMH impact. When does FP need to happen before surgery?</p><div class="vp-thread"><span class="vpt">Station 6</span><span class="vpt">Fertility preservation</span></div></div>
+  </div>
+  <div class="vp-card vpc-5 fade-up" style="margin-bottom:18px"><div class="vp-num">05</div><div class="vp-angle">Vantage 5 — Concept Inversion</div><h4>Which patient would NOT benefit from AMH-guided dose adjustment?</h4><p>Reverse reasoning. Patients with discordant AMH/AFC, prior ovarian surgery, or premature luteinisation may not follow the standard prediction curve. The exam tests boundaries, not centres.</p><div class="vp-thread"><span class="vpt">Any station</span><span class="vpt">EFRM trap question</span></div></div>
+  <div class="vp-rule fade-up"><p><strong>The principle:</strong> One concept — five stations, five reasoning frameworks. A candidate who memorised "AMH = ovarian reserve" fails Vantages 3, 4, and 5. The goal is not 90%+ mock scores. The goal is <strong>decision stability under pressure</strong> — when the question looks unfamiliar but the concept is not.</p></div>
+</div>
+</section>
+
+<div style="padding:0 56px 60px;max-width:1120px;margin:0 auto">
+  <div class="insight fade-up">
+    <h2>Structured reasoning over passive recall.</h2>
+    <p>The EFRM does not reward memory alone. It rewards knowledge applied through structured reasoning — the ability to work through unfamiliar clinical presentations, anchor every decision to current evidence, acknowledge uncertainty correctly, and defend a plan under adversarial examination. <em>That is what this system trains.</em></p>
+  </div>
+</div>
+<footer>StudyEFRM · <strong>A Dedicated EFRM Preparation Platform</strong> · Dr Shivansh Jaiswal · 2026</footer>
+</div>
+
+<!-- ══════════ PAGE 2: ABOUT ══════════ -->
+<div id="page-about" class="page">
+<div style="padding:110px 56px 48px;background:linear-gradient(155deg,#d2ebf5,#c5e4da,#bde4e0)">
+  <div style="max-width:1120px;margin:0 auto;position:relative">
+    <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);background:rgba(255,255,255,.7);border:1px solid rgba(79,158,172,.28);padding:5px 12px;border-radius:13px;display:inline-block;margin-bottom:18px">The Person Behind the Platform</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);color:var(--ink);line-height:1.08;margin-bottom:14px;max-width:660px">Dr Shivansh Jaiswal<br><em style="color:var(--teal)">EFOG-EBCOG · EFRM Part 1 Passed</em></h1>
+    <p style="font-size:.88rem;color:var(--mid);max-width:540px;line-height:1.82;font-weight:300">IVF Specialist. Precision Fertility, Sikar. One of the few Indian clinicians to hold dual European board-level credentials in both OBG and Reproductive Medicine simultaneously.</p>
+  </div>
+</div>
+<section class="bg-fog">
+<div class="sec">
+  <p class="sl">The Story</p>
+  <h2 class="st fade-up">Why this platform exists</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:36px" class="fade-up">
+    <div>
+      <p style="font-size:.86rem;color:var(--mid);line-height:1.9;margin-bottom:14px">When I decided to sit EFRM Part 1, I searched for dedicated preparation resources. There were none. Not a single platform, course, or structured guide built specifically for the EFRM examination.</p>
+      <p style="font-size:.86rem;color:var(--mid);line-height:1.9;margin-bottom:14px">I had to build my own system — 800+ questions, 7 domain-specific modules, a daily mock architecture, error notebooks, and a mentality framework. I sat the exam on March 20, 2026. Both papers passed.</p>
+      <p style="font-size:.86rem;color:var(--mid);line-height:1.9">Then I built this platform so no future candidate has to start from scratch the way I did. This is the resource I wish had existed.</p>
+    </div>
+    <div>
+      <p style="font-size:.86rem;color:var(--mid);line-height:1.9;margin-bottom:14px">There were no dedicated EFRM preparation resources when I began. No structured question bank. No platform designed around the exam's actual format. Everything had to be built from first principles.</p>
+      <p style="font-size:.86rem;color:var(--mid);line-height:1.9;margin-bottom:14px">The system that emerged — 800+ questions, 7 domain modules, a daily mock architecture, and an error notebook — was built for one purpose: to pass the exam. It worked. Then it became this platform.</p>
+      <p style="font-size:.86rem;color:var(--mid);line-height:1.9">EFRM Part 2 OSCE: 4 July 2026, ExCeL London. Every clinical case seen in practice is documented here as OSCE material — in real time, before the result is known.</p>
+    </div>
+  </div>
+
+  <p class="sl fade-up">Official EFRM Part 1 Results — March 20, 2026</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:28px" class="fade-up">
+    <div class="card" style="padding:22px">
+      <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin-bottom:14px;color:var(--ink)">Paper 1 — 75.29% <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--teal)">(Pass: 57.97%)</span></h4>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font-size:.72rem;color:var(--mid);width:140px;flex-shrink:0">Laboratory / Embryology</span><div style="flex:1;background:rgba(159,208,188,.15);border-radius:20px;height:6px"><div style="width:87.5%;height:100%;border-radius:20px;background:linear-gradient(90deg,#4aab8f,#38907a)"></div></div><span style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--mid);width:38px;text-align:right">87.5%</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font-size:.72rem;color:var(--mid);width:140px;flex-shrink:0">Infertility / IVF</span><div style="flex:1;background:rgba(159,208,188,.15);border-radius:20px;height:6px"><div style="width:85%;height:100%;border-radius:20px;background:linear-gradient(90deg,#5ba3b0,#4aab8f)"></div></div><span style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--mid);width:38px;text-align:right">85%</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font-size:.72rem;color:var(--mid);width:140px;flex-shrink:0">Benign Gynaecology</span><div style="flex:1;background:rgba(159,208,188,.15);border-radius:20px;height:6px"><div style="width:80%;height:100%;border-radius:20px;background:linear-gradient(90deg,#7bb8d4,#5ba3b0)"></div></div><span style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--mid);width:38px;text-align:right">80%</span></div>
+      <div style="display:flex;align-items:center;gap:10px"><span style="font-size:.72rem;color:var(--mid);width:140px;flex-shrink:0">Surgery</span><div style="flex:1;background:rgba(159,208,188,.15);border-radius:20px;height:6px"><div style="width:68.75%;height:100%;border-radius:20px;background:linear-gradient(90deg,#e8a330,#d4820a)"></div></div><span style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--mid);width:38px;text-align:right">68.75%</span></div>
+    </div>
+    <div class="card" style="padding:22px">
+      <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;margin-bottom:14px;color:var(--ink)">Paper 2 — 68.97% <span style="font-family:'DM Mono',monospace;font-size:.62rem;color:var(--teal)">(Pass: 55.96%)</span></h4>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><span style="font-size:.72rem;color:var(--mid);width:160px;flex-shrink:0">Early Pregnancy</span><div style="flex:1;background:rgba(159,208,188,.15);border-radius:20px;height:6px"><div style="width:55.56%;height:100%;border-radius:20px;background:linear-gradient(90deg,#e8a330,#d4820a)"></div></div><span style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--mid);width:38px;text-align:right">55.56%</span></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><span style="font-size:.72rem;color:var(--mid);width:160px;flex-shrink:0">Reprod. Endocrinology</span><div style="flex:1;background:rgba(159,208,188,.15);border-radius:20px;height:6px"><div style="width:46.15%;height:100%;border-radius:20px;background:linear-gradient(90deg,#d45f5f,#b04040)"></div></div><span style="font-family:'DM Mono',monospace;font-size:.66rem;color:var(--mid);width:38px;text-align:right">46.15%</span></div>
+      <p style="font-size:.72rem;color:var(--soft);line-height:1.65">This is the honest data. The weakest domain is shown, not hidden. This is why the error notebook system exists — and why Reproductive Endocrinology gets full dedicated coverage. The preparation method works even from weak starting positions.</p>
+    </div>
+  </div>
+
+  <p class="sl fade-up">Credential Stack</p>
+  <div class="card fade-up" style="padding:22px">
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(159,208,188,.15)"><span style="font-size:1rem;flex-shrink:0">🏆</span><div><h4 style="font-size:.78rem;font-weight:600;color:var(--ink);margin-bottom:1px">EFOG-EBCOG</h4><p style="font-size:.68rem;color:var(--soft)">European Board and College of Obstetricians and Gynaecologists · Both parts passed · Lisbon, January 2026</p></div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(159,208,188,.15)"><span style="font-size:1rem;flex-shrink:0">✅</span><div><h4 style="font-size:.78rem;font-weight:600;color:var(--ink);margin-bottom:1px">EFRM Part 1 Passed — March 2026</h4><p style="font-size:.68rem;color:var(--soft)">ESHRE/EBCOG Fellowship Examination in Reproductive Medicine · Paper 1: 75.29% · Paper 2: 68.97%</p></div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(159,208,188,.15)"><span style="font-size:1rem;flex-shrink:0">📅</span><div><h4 style="font-size:.78rem;font-weight:600;color:var(--ink);margin-bottom:1px">EFRM Part 2 OSCE — July 4, 2026</h4><p style="font-size:.68rem;color:var(--soft)">ExCeL London · Preparing in real time · Cases documented as they happen</p></div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid rgba(159,208,188,.15)"><span style="font-size:1rem;flex-shrink:0">🎓</span><div><h4 style="font-size:.78rem;font-weight:600;color:var(--ink);margin-bottom:1px">MS Obstetrics &amp; Gynaecology</h4><p style="font-size:.68rem;color:var(--soft)">ESI-PGIMSR, New Delhi · GGSIPU · 2021</p></div></div>
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0"><span style="font-size:1rem;flex-shrink:0">🏥</span><div><h4 style="font-size:.78rem;font-weight:600;color:var(--ink);margin-bottom:1px">IVF Specialist &amp; Unit Incharge · Precision Fertility · Sikar</h4><p style="font-size:.68rem;color:var(--soft)">FMF Certified · ESHRE Member · FMAS · DMAS · Advanced Hysteroscopy · 350+ ART cycles</p></div></div>
+  </div>
+</div>
+</section>
+<footer>StudyEFRM · <strong>Dr Shivansh Jaiswal · EFOG-EBCOG · EFRM Part 1 Passed 2026</strong></footer>
+</div>
+
+<!-- ══════════ PAGE 3: OSCE PREP ══════════ -->
+<div id="page-osce" class="page">
+<div style="padding:110px 56px 48px;background:linear-gradient(155deg,#d8eef8,#cce8dc,#c2e6e0)">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);background:rgba(255,255,255,.7);border:1px solid rgba(79,158,172,.28);padding:5px 12px;border-radius:13px;display:inline-block;margin-bottom:18px">EFRM Part 2 · OSCE Preparation</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.4rem);color:var(--ink);line-height:1.08;margin-bottom:14px;max-width:680px">From clinical knowledge to<br><em style="color:var(--teal)">subspecialist reasoning<br>under pressure</em></h1>
+    <div style="background:#fce8e8;border:1px solid rgba(212,95,95,.2);border-radius:10px;padding:11px 16px;display:inline-block;margin-top:6px"><p style="font-size:.76rem;color:#b54040;font-family:'DM Mono',monospace;letter-spacing:.5px">⚠️ FAIL ONE STATION — FAIL THE EXAM. No compensation between stations.</p></div>
+  </div>
+</div>
+
+<section class="bg-fog">
+<div class="sec">
+  <p class="sl">Critical Distinction</p>
+  <h2 class="st fade-up">What the EFRM OSCE actually is</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:18px;overflow:hidden;box-shadow:var(--cs);margin-bottom:28px" class="fade-up">
+    <div style="background:#f5eeee;padding:26px"><h3 style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#c07070;margin-bottom:13px;padding-bottom:9px;border-bottom:1px solid rgba(0,0,0,.06)">✕ What it is NOT</h3><ul style="list-style:none"><li style="font-size:.8rem;padding:5px 0;color:var(--mid);border-bottom:1px dashed rgba(0,0,0,.05);display:flex;gap:8px;line-height:1.5"><span style="color:#c07070;font-size:.65rem;flex-shrink:0;margin-top:3px">✕</span>No patient actors or simulated colleagues</li><li style="font-size:.8rem;padding:5px 0;color:var(--mid);border-bottom:1px dashed rgba(0,0,0,.05);display:flex;gap:8px;line-height:1.5"><span style="color:#c07070;font-size:.65rem;flex-shrink:0;margin-top:3px">✕</span>No breaking bad news to a role-player</li><li style="font-size:.8rem;padding:5px 0;color:var(--mid);border-bottom:1px dashed rgba(0,0,0,.05);display:flex;gap:8px;line-height:1.5"><span style="color:#c07070;font-size:.65rem;flex-shrink:0;margin-top:3px">✕</span>No teamwork or interprofessional stations</li><li style="font-size:.8rem;padding:5px 0;color:var(--mid);display:flex;gap:8px;line-height:1.5"><span style="color:#c07070;font-size:.65rem;flex-shrink:0;margin-top:3px">✕</span>Not MRCOG Part 3 format</li></ul></div>
+    <div style="background:linear-gradient(135deg,#e6f7f2,#d6f0eb);padding:26px"><h3 style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:13px;padding-bottom:9px;border-bottom:1px solid rgba(0,0,0,.06)">✓ What it IS</h3><ul style="list-style:none"><li style="font-size:.8rem;padding:5px 0;color:var(--mid);border-bottom:1px dashed rgba(0,0,0,.05);display:flex;gap:8px;line-height:1.5"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;margin-top:3px">✓</span>7–10 stations · 10–12 minutes each</li><li style="font-size:.8rem;padding:5px 0;color:var(--mid);border-bottom:1px dashed rgba(0,0,0,.05);display:flex;gap:8px;line-height:1.5"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;margin-top:3px">✓</span>One candidate · one examiner · face to face</li><li style="font-size:.8rem;padding:5px 0;color:var(--mid);border-bottom:1px dashed rgba(0,0,0,.05);display:flex;gap:8px;line-height:1.5"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;margin-top:3px">✓</span>Paper-based written clinical or lab scenario</li><li style="font-size:.8rem;padding:5px 0;color:var(--mid);display:flex;gap:8px;line-height:1.5"><span style="color:var(--accent);font-size:.65rem;flex-shrink:0;margin-top:3px">✓</span>Pure knowledge + critical analysis + reasoning</li></ul></div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#dff5ef,#d0f0f5);border-radius:16px;padding:26px;border:1px solid rgba(79,158,172,.16);margin-bottom:28px;position:relative;overflow:hidden" class="fade-up">
+    <div style="position:absolute;right:-10px;bottom:-20px;font-family:'Cormorant Garamond',serif;font-size:6rem;color:rgba(79,158,172,.05);pointer-events:none">PASS</div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--ink);margin-bottom:10px">Modified Rothman's Method</h3>
+    <p style="font-size:.82rem;color:var(--mid);line-height:1.75;max-width:560px">Examiners classify each candidate per station as Pass / Borderline / Fail. Pass mark = median of borderline candidates — calculated independently per station. You cannot compensate weakness in one station with strength elsewhere.</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+      <div style="background:white;border-radius:22px;padding:6px 13px;font-size:.72rem;color:var(--mid);border:1px solid rgba(79,158,172,.2)"><strong style="color:var(--teal)">75%</strong> of stations must pass</div>
+      <div style="background:white;border-radius:22px;padding:6px 13px;font-size:.72rem;color:var(--mid);border:1px solid rgba(79,158,172,.2)"><strong style="color:var(--teal)">Per-station</strong> pass marks — independent</div>
+      <div style="background:white;border-radius:22px;padding:6px 13px;font-size:.72rem;color:var(--mid);border:1px solid rgba(79,158,172,.2)"><strong style="color:var(--teal)">No compensation</strong> between stations</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="bg-sky">
+<div class="sec">
+  <p class="sl">ATCRM Syllabus 2024 — 7 Stations</p>
+  <h2 class="st fade-up">Station Map</h2>
+  <p class="ss fade-up">Your IVF background gives natural strength in 3 stations. Stations 2 and 7 need the most dedicated work. No station can be left to chance.</p>
+  <div style="display:flex;flex-direction:column;gap:0;position:relative;z-index:1" class="fade-up">
+    <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#72b4d0,#9fd0bc,#3ea888);transform:translateX(-50%);z-index:0"></div>
+    <div style="display:flex;align-items:stretch;position:relative;z-index:1;margin-bottom:0">
+      <div style="flex:1;background:white;border-radius:13px;padding:16px 20px;margin:8px 0;box-shadow:var(--cs);border:1px solid rgba(159,208,188,.22);border-top:3px solid #7bb8d4"><h4 style="font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--ink);margin-bottom:4px">Reproductive Endocrinology</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.5;margin-bottom:7px">PCOS, POI, thyroid, prolactin, amenorrhoea. Every answer anchored to ESHRE thresholds.</p><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#fff0d8;color:#a0700a">Dedicated Study</span></div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;padding:0 10px;z-index:2"><div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7bb8d4,#5ba3b0);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:white;box-shadow:0 3px 12px rgba(0,0,0,.1)">1</div><div style="width:2px;flex:1;background:linear-gradient(180deg,#7bb8d4,#8dc5b5);min-height:30px"></div></div>
+      <div style="flex:1"></div>
+    </div>
+    <div style="display:flex;flex-direction:row-reverse;align-items:stretch;position:relative;z-index:1">
+      <div style="flex:1;background:white;border-radius:13px;padding:16px 20px;margin:8px 0;box-shadow:var(--cs);border:1px solid rgba(159,208,188,.22);border-top:3px solid #a8d5c2"><h4 style="font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--ink);margin-bottom:4px">Paediatric &amp; Adolescent Gynaecology</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.5;margin-bottom:7px">Precocious/delayed puberty, Müllerian anomalies, adolescent menstrual disorders, DSD. Least IVF-adjacent — first principles required.</p><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#fce8e8;color:#b54040">Priority Fix</span></div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;padding:0 10px;z-index:2"><div style="width:2px;flex:0 0 20px;background:linear-gradient(180deg,#8dc5b5,#a0c8b8)"></div><div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#a8d5c2,#7abba5);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:white;box-shadow:0 3px 12px rgba(0,0,0,.1)">2</div><div style="width:2px;flex:1;background:linear-gradient(180deg,#a0c8b8,#7bb8d4);min-height:30px"></div></div>
+      <div style="flex:1"></div>
+    </div>
+    <div style="display:flex;align-items:stretch;position:relative;z-index:1">
+      <div style="flex:1;background:white;border-radius:13px;padding:16px 20px;margin:8px 0;box-shadow:var(--cs);border:1px solid rgba(159,208,188,.22);border-top:3px solid #5ba3b0"><h4 style="font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--ink);margin-bottom:4px">Embryology / Genetics / Andrology</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.5;margin-bottom:7px">PGT, chromosomal mosaicism, Gardner grading, Istanbul Consensus — your daily clinical language.</p><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#d8f5eb;color:#2d8a65">Strength</span></div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;padding:0 10px;z-index:2"><div style="width:2px;flex:0 0 20px;background:linear-gradient(180deg,#7bb8d4,#a0c8b8)"></div><div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#5ba3b0,#3d8a96);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:white;box-shadow:0 3px 12px rgba(0,0,0,.1)">3</div><div style="width:2px;flex:1;background:linear-gradient(180deg,#a0c8b8,#7bb8d4);min-height:30px"></div></div>
+      <div style="flex:1"></div>
+    </div>
+    <div style="display:flex;flex-direction:row-reverse;align-items:stretch;position:relative;z-index:1">
+      <div style="flex:1;background:white;border-radius:13px;padding:16px 20px;margin:8px 0;box-shadow:var(--cs);border:1px solid rgba(159,208,188,.22);border-top:3px solid #8ec8c0"><h4 style="font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--ink);margin-bottom:4px">Early Pregnancy &amp; Implantation</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.5;margin-bottom:7px">Ectopic, miscarriage, RIF, RPL — every threshold from ESHRE and NICE. Clinical nuance separates borderline from pass.</p><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#fff0d8;color:#a0700a">Dedicated Study</span></div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;padding:0 10px;z-index:2"><div style="width:2px;flex:0 0 20px;background:linear-gradient(180deg,#7bb8d4,#8ec8c0)"></div><div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#8ec8c0,#6aafa6);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:white;box-shadow:0 3px 12px rgba(0,0,0,.1)">4</div><div style="width:2px;flex:1;background:linear-gradient(180deg,#8ec8c0,#68bfa8);min-height:30px"></div></div>
+      <div style="flex:1"></div>
+    </div>
+    <div style="display:flex;align-items:stretch;position:relative;z-index:1">
+      <div style="flex:1;background:white;border-radius:13px;padding:16px 20px;margin:8px 0;box-shadow:var(--cs);border:1px solid rgba(159,208,188,.22);border-top:3px solid #4aab8f"><h4 style="font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--ink);margin-bottom:4px">Infertility &amp; MAR</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.5;margin-bottom:7px">Your home ground. IVF protocols, OHSS, stimulation individualisation — translate daily experience into structured viva answers.</p><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#d8f5eb;color:#2d8a65">Strength</span></div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;padding:0 10px;z-index:2"><div style="width:2px;flex:0 0 20px;background:linear-gradient(180deg,#68bfa8,#8ec8c0)"></div><div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#4aab8f,#38907a);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:white;box-shadow:0 3px 12px rgba(0,0,0,.1)">5</div><div style="width:2px;flex:1;background:linear-gradient(180deg,#68bfa8,#6ab8d0);min-height:30px"></div></div>
+      <div style="flex:1"></div>
+    </div>
+    <div style="display:flex;flex-direction:row-reverse;align-items:stretch;position:relative;z-index:1">
+      <div style="flex:1;background:white;border-radius:13px;padding:16px 20px;margin:8px 0;box-shadow:var(--cs);border:1px solid rgba(159,208,188,.22);border-top:3px solid #6ab8d0"><h4 style="font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--ink);margin-bottom:4px">Fertility Preservation + Reproductive Surgery</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.5;margin-bottom:7px">Oncofertility, BRCA counselling, transgender FP, surgical thresholds. Your cycles provide the narrative.</p><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#d8f5eb;color:#2d8a65">Strength</span></div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;padding:0 10px;z-index:2"><div style="width:2px;flex:0 0 20px;background:linear-gradient(180deg,#6ab8d0,#68bfa8)"></div><div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#6ab8d0,#4a9bb8);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:white;box-shadow:0 3px 12px rgba(0,0,0,.1)">6</div><div style="width:2px;flex:1;background:linear-gradient(180deg,#6ab8d0,#a06ab0);min-height:30px"></div></div>
+      <div style="flex:1"></div>
+    </div>
+    <div style="display:flex;align-items:stretch;position:relative;z-index:1">
+      <div style="flex:1;background:white;border-radius:13px;padding:16px 20px;margin:8px 0;box-shadow:var(--cs);border:1.5px solid rgba(160,106,176,.28);border-top:3px solid #a06ab0"><h4 style="font-family:'Cormorant Garamond',serif;font-size:.98rem;color:var(--ink);margin-bottom:4px">Abstract of a Scientific Paper ⭐</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.5;margin-bottom:7px">Not "what did this study show" — but "should this change your practice, and why?" The hidden differentiator. Most candidates underestimate this station.</p><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#fce8e8;color:#b54040;margin-right:4px">High Stakes</span><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#f0eaff;color:#6840a0">Research Literacy</span></div>
+      <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center;padding:0 10px;z-index:2"><div style="width:2px;flex:0 0 20px;background:linear-gradient(180deg,#a06ab0,#6ab8d0)"></div><div style="width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#a06ab0,#8050a0);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:white;box-shadow:0 3px 12px rgba(0,0,0,.1)">7</div></div>
+      <div style="flex:1"></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="bg-petal">
+<div class="sec">
+  <p class="sl">Daily Practice — 17:30–18:00</p>
+  <h2 class="st fade-up">The Viva Framework</h2>
+  <p class="ss fade-up">Not a role-play. A viva practice session. The self-interrogation step is what most candidates skip — and what the examiner will do to you.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:26px" class="fade-up">
+    <div class="card" style="padding:18px;display:flex;gap:13px"><div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--ocean);opacity:.3;line-height:1;flex-shrink:0;width:26px">1</div><div><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:4px">Read the Scenario</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">Silent reading. Core question, key data, red flags. Do not speak yet.</p><div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent);margin-top:4px">0–2 minutes</div></div></div>
+    <div class="card" style="padding:18px;display:flex;gap:13px"><div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--ocean);opacity:.3;line-height:1;flex-shrink:0;width:26px">2</div><div><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:4px">Structured Response Aloud</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">7-step algorithm. Every answer must contain "According to ESHRE guidelines…"</p><div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent);margin-top:4px">2–6 minutes</div></div></div>
+    <div class="card" style="padding:18px;display:flex;gap:13px"><div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--ocean);opacity:.3;line-height:1;flex-shrink:0;width:26px">3</div><div><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:4px">Self-Interrogation</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">Act as examiner. "Why not option B?" · "What if AMH was 0.5?" · "What does ESHRE say exactly?"</p><div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent);margin-top:4px">6–10 minutes</div></div></div>
+    <div class="card" style="padding:18px;display:flex;gap:13px"><div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--ocean);opacity:.3;line-height:1;flex-shrink:0;width:26px">4</div><div><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:4px">Evidence Check + Gap Log</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">Look up ESHRE guideline. Compare point-by-point. Every gap drives the next session.</p><div style="font-family:'DM Mono',monospace;font-size:.6rem;color:var(--accent);margin-top:4px">10–12 minutes</div></div></div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#e6f5ff,#ddf5f0);border-radius:14px;padding:22px;border:1px solid rgba(79,158,172,.16);margin-bottom:24px" class="fade-up">
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink);margin-bottom:8px">Verbalising Uncertainty — The Right Way</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+      <div style="background:rgba(212,95,95,.07);border:1px solid rgba(212,95,95,.16);border-radius:10px;padding:13px 15px"><div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--danger);margin-bottom:6px">✕ Loses marks</div><div style="font-size:.76rem;color:var(--mid);line-height:1.6;font-style:italic">"I'm not sure…"<br>"I think maybe…"<br>"I don't know the guideline…"</div></div>
+      <div style="background:rgba(62,168,136,.07);border:1px solid rgba(62,168,136,.16);border-radius:10px;padding:13px 15px"><div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:6px">✓ Gains marks</div><div style="font-size:.76rem;color:var(--mid);line-height:1.6;font-style:italic">"Evidence is limited, but per current ESHRE guidance I would… while monitoring for…"</div></div>
+    </div>
+  </div>
+
+  <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--ink);margin-bottom:13px" class="fade-up">Station 7 — Abstract Appraisal Checklist</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px" class="fade-up">
+    <div class="card" style="padding:13px 15px;display:flex;gap:10px"><div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#cce8f4,#c0eadc);display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0">🔬</div><div><h4 style="font-size:.76rem;font-weight:600;color:var(--ink);margin-bottom:2px">Study Design</h4><p style="font-size:.68rem;color:var(--soft);line-height:1.5">RCT, cohort, case-control, SR? Appropriate for the question?</p></div></div>
+    <div class="card" style="padding:13px 15px;display:flex;gap:10px"><div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#cce8f4,#c0eadc);display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0">👥</div><div><h4 style="font-size:.76rem;font-weight:600;color:var(--ink);margin-bottom:2px">Population</h4><p style="font-size:.68rem;color:var(--soft);line-height:1.5">Well-defined? Generalisable to your patients?</p></div></div>
+    <div class="card" style="padding:13px 15px;display:flex;gap:10px"><div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#cce8f4,#c0eadc);display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0">🎯</div><div><h4 style="font-size:.76rem;font-weight:600;color:var(--ink);margin-bottom:2px">Outcome</h4><p style="font-size:.68rem;color:var(--soft);line-height:1.5">Patient-relevant or surrogate? Pre-specified?</p></div></div>
+    <div class="card" style="padding:13px 15px;display:flex;gap:10px"><div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#cce8f4,#c0eadc);display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0">📊</div><div><h4 style="font-size:.76rem;font-weight:600;color:var(--ink);margin-bottom:2px">Statistics</h4><p style="font-size:.68rem;color:var(--soft);line-height:1.5">P-value vs CI? Absolute vs relative risk? NNT?</p></div></div>
+    <div class="card" style="padding:13px 15px;display:flex;gap:10px"><div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#cce8f4,#c0eadc);display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0">⚠️</div><div><h4 style="font-size:.76rem;font-weight:600;color:var(--ink);margin-bottom:2px">Bias</h4><p style="font-size:.68rem;color:var(--soft);line-height:1.5">Selection, performance, detection, attrition?</p></div></div>
+    <div class="card" style="padding:13px 15px;display:flex;gap:10px"><div style="width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,#cce8f4,#c0eadc);display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0">🏥</div><div><h4 style="font-size:.76rem;font-weight:600;color:var(--ink);margin-bottom:2px">Clinical Translation</h4><p style="font-size:.68rem;color:var(--soft);line-height:1.5">Should this change practice? What would need to be true?</p></div></div>
+  </div>
+  <div style="background:var(--ink);border-radius:12px;padding:16px 20px" class="fade-up"><p style="font-size:.76rem;color:rgba(255,255,255,.62);line-height:1.8">Always close Station 7 with: <strong style="color:var(--mint)">"Based on the methodological limitations — specifically [name 1–2] — I would not change my clinical practice yet. I would be more persuaded by a [multicentre RCT / larger sample / longer follow-up]."</strong></p></div>
+</div>
+</section>
+<footer>StudyEFRM OSCE Preparation · <strong>Station 7 is the differentiator.</strong> Practise abstract appraisal every week.</footer>
+</div>
+
+<!-- ══════════ PAGE 4: PART 1 ══════════ -->
+<div id="page-part1" class="page">
+<div style="padding:110px 56px 48px;background:linear-gradient(155deg,#e0eef5,#d4e8de,#cce4e0)">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);background:rgba(255,255,255,.7);border:1px solid rgba(79,158,172,.28);padding:5px 12px;border-radius:13px;display:inline-block;margin-bottom:18px">EFRM Part 1 · Knowledge-Based Assessment</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.4rem);color:var(--ink);line-height:1.08;margin-bottom:14px;max-width:700px">The conceptual foundation.<br><em style="color:var(--teal)">800+ questions. Built from<br>the actual exam.</em></h1>
+    <p style="font-size:.86rem;color:var(--mid);max-width:520px;line-height:1.82;font-weight:300">2 papers · 45Q each · Paper 1: 25 SBA + 20 EMQ · Paper 2: 25 SBA + 20 EMQ · No mid-section answers. No domain can be left unprepared.</p>
+    <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
+      <div style="background:rgba(255,255,255,.7);border-radius:11px;padding:11px 16px;border:1px solid rgba(159,208,188,.3);text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--teal);font-weight:600;line-height:1">75.29%</div><div style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--soft);text-transform:uppercase;letter-spacing:1px">Paper 1 · March 2026</div></div>
+      <div style="background:rgba(255,255,255,.7);border-radius:11px;padding:11px 16px;border:1px solid rgba(159,208,188,.3);text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--teal);font-weight:600;line-height:1">68.97%</div><div style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--soft);text-transform:uppercase;letter-spacing:1px">Paper 2 · March 2026</div></div>
+      <div style="background:rgba(255,255,255,.7);border-radius:11px;padding:11px 16px;border:1px solid rgba(159,208,188,.3);text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:var(--teal);font-weight:600;line-height:1">800+</div><div style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--soft);text-transform:uppercase;letter-spacing:1px">Questions built</div></div>
+    </div>
+  </div>
+</div>
+
+<section class="bg-fog">
+<div class="sec">
+  <p class="sl">ATCRM Syllabus 2024 — 7 Core Domains</p>
+  <h2 class="st fade-up">5 Free Questions Per Domain</h2>
+  <p class="ss fade-up">Each domain shows 5 sample questions from the actual preparation bank. Click to reveal the answer. The full bank — 800+ questions, 1-page high-yield sheets, error notebook, mock papers — unlocks on registration.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="fade-up" id="p1-domains">
+
+    <div class="card" style="overflow:hidden;border-top:3px solid #7bb8d4">
+      <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(159,208,188,.12)">
+        <div><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:2px">Reproductive Endocrinology</h4><p style="font-size:.68rem;color:var(--soft)">PCOS · POI · Thyroid · Prolactin · Ovulation disorders</p></div>
+        <div style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--teal)">D1</div>
+      </div>
+      <div style="padding:8px 18px 4px">
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>AMH primarily reflects which follicle pool?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Antral follicle pool (small antral follicles, 2–10mm).</strong> Secreted by granulosa cells. Does not reflect primordial reserve. Does not fluctuate with cycle day — unlike FSH. ESHRE: AMH is the preferred single marker of ovarian reserve for ART prognosis.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>TSH threshold for IVF — ESHRE 2023?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>&lt;2.5 mIU/L before ART.</strong> Levothyroxine if TSH 2.5–4.0 with positive TPO antibodies. If TSH &gt;4.0 — treat regardless of antibody status. Most commonly tested thyroid threshold in EFRM.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Rotterdam criteria — how many of 3 features for PCOS diagnosis?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>2 of 3.</strong> (1) Oligo/anovulation, (2) Biochemical/clinical hyperandrogenism, (3) Polycystic ovarian morphology (≥20 follicles per ovary OR volume &gt;10ml). Rotterdam 2003 — still the international standard per ESHRE 2023.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>FSH threshold defining POI?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>FSH &gt;25 IU/L on two occasions at least 4 weeks apart, before age 40.</strong> ESHRE POI guideline. Must be combined with ≥4 months menstrual disturbance. Karyotype mandatory in all POI &lt;35.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>First-line pharmacological OI in PCOS — ESHRE/ASRM 2023?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Letrozole.</strong> ESHRE/ASRM PCOS 2023: letrozole recommended over clomiphene as first-line OI. Higher LBR, lower multiple pregnancy rate, better endometrial response. Dose: 2.5–7.5mg days 2–6.</div></div>
+      </div>
+      <div style="padding:10px 18px;border-top:1px solid rgba(159,208,188,.12);display:flex;align-items:center;justify-content:center;gap:6px;background:var(--fog);cursor:pointer;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--lock);text-transform:uppercase;letter-spacing:1px" onclick="openGate()">🔐 &nbsp; Unlock full domain bank</div>
+    </div>
+
+    <div class="card" style="overflow:hidden;border-top:3px solid #4aab8f">
+      <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(159,208,188,.12)">
+        <div><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:2px">Infertility &amp; MAR</h4><p style="font-size:.68rem;color:var(--soft)">IVF · ICSI · Stimulation · OHSS · FET protocols</p></div>
+        <div style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--teal)">D2</div>
+      </div>
+      <div style="padding:8px 18px 4px">
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>POSEIDON Group 3 definition?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Age &lt;35 + predicted poor ovarian response (AMH &lt;1.2 ng/ml OR AFC &lt;5).</strong> POSEIDON 2016: Groups 1–2 = unexpected poor response; Groups 3–4 = predicted poor response. Group 4 = same but age ≥35.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>GnRH agonist trigger — most important advantage?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Significantly lower OHSS risk.</strong> Endogenous LH surge — shorter duration, lower amplitude than exogenous hCG. Antagonist protocol only. High responders (AFC &gt;20): GnRHa trigger + freeze-all = ESHRE-recommended OHSS prevention strategy.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Best strategy to reduce multiple pregnancy in IVF?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Elective single embryo transfer (eSET).</strong> ESHRE embryo transfer guideline 2023. NOT PGT-A. NOT blastocyst culture alone. Cumulative LBR with eSET + FET is equivalent to DET. Multiple pregnancy is the most preventable ART complication.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Natural cycle FET vs HRT-FET — preferred in ovulatory women?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Natural cycle FET.</strong> ESHRE FET guideline 2022. NEET RCT (Lancet 2023): NC-FET shows higher LBR and lower placental complications vs HRT-FET. Use HRT-FET only when NC-FET is not possible.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Progesterone threshold for freeze-all conversion?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>≥1.5 ng/ml on day of trigger.</strong> Premature P rise ≥1.5 ng/ml associated with reduced implantation in fresh cycles. Freeze-all recommended. Impairs endometrial receptivity — does NOT affect embryo quality.</div></div>
+      </div>
+      <div style="padding:10px 18px;border-top:1px solid rgba(159,208,188,.12);display:flex;align-items:center;justify-content:center;gap:6px;background:var(--fog);cursor:pointer;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--lock);text-transform:uppercase;letter-spacing:1px" onclick="openGate()">🔐 &nbsp; Unlock full domain bank</div>
+    </div>
+
+    <div class="card" style="overflow:hidden;border-top:3px solid #5ba3b0">
+      <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(159,208,188,.12)">
+        <div><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:2px">Laboratory — Embryology &amp; Genetics</h4><p style="font-size:.68rem;color:var(--soft)">Fertilisation · Embryo grading · PGT · Cryobiology</p></div>
+        <div style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--teal)">D3</div>
+      </div>
+      <div style="padding:8px 18px 4px">
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Gardner grading — what does the number represent?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Expansion stage (1–6).</strong> 1=early blast, 2=blast, 3=full blast, 4=expanded (thinned zona), 5=hatching, 6=hatched. Then ICM (A/B/C) and TE (A/B/C). 4AA = expanded + excellent ICM + excellent TE.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Which marker most strongly predicts embryo implantation?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Embryo ploidy (euploid status).</strong> NOT morphology alone. NOT endometrial thickness. Chromosomally normal embryo has highest implantation potential regardless of morphological grade. Key EFRM trap question.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Vitrification survival rate benchmark — ESHRE Vienna Consensus?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>≥80% minimum, ≥90% benchmark for quality centres.</strong> Istanbul Consensus: survival = &gt;50% intact cells + evidence of re-expansion. Re-expansion expected within 2–4 hours post-thaw.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Most common cause of cleavage-stage embryo arrest?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Aneuploidy (chromosomal imbalance).</strong> Embryo competence dominates — not lab conditions. This is why Day 3 arrested embryos have very low success rates. EFRM exam rule: embryo competence &gt; culture conditions.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>EGA in human embryos — when does it occur?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>4–8 cell stage (Day 3) for major EGA.</strong> Embryo transitions from maternal mRNA to embryonic genome control. This is why Day 3 arrest is clinically significant. Preimplantation embryos rely on maternal RNA until EGA.</div></div>
+      </div>
+      <div style="padding:10px 18px;border-top:1px solid rgba(159,208,188,.12);display:flex;align-items:center;justify-content:center;gap:6px;background:var(--fog);cursor:pointer;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--lock);text-transform:uppercase;letter-spacing:1px" onclick="openGate()">🔐 &nbsp; Unlock full domain bank</div>
+    </div>
+
+    <div class="card" style="overflow:hidden;border-top:3px solid #a06ab0">
+      <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(159,208,188,.12)">
+        <div><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:2px">Andrology</h4><p style="font-size:.68rem;color:var(--soft)">Spermatogenesis · Azoospermia · Sperm retrieval · Genetics</p></div>
+        <div style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--teal)">D4</div>
+      </div>
+      <div style="padding:8px 18px 4px">
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>AZF microdeletion — which region predicts no sperm on TESE?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>AZFa and AZFb deletions.</strong> AZFa = Sertoli Cell Only. AZFb = maturation arrest. Both = no sperm on microTESE. AZFc = variable, sperm found in 50–70%. CFTR = CBAVD (obstructive azoospermia, normal spermatogenesis).</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>WHO 2021 reference — sperm morphology (Kruger strict)?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>≥4% normal forms.</strong> WHO 2021 lower reference limits: Volume ≥1.4ml, Concentration ≥16M/ml, Total motility ≥42%, Progressive motility ≥30%, Morphology ≥4%. Isolated teratozoospermia is NOT a standard ESHRE indication for ICSI.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Preferred sperm retrieval for non-obstructive azoospermia (NOA)?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Microdissection TESE (microTESE).</strong> Higher retrieval rates than conventional TESE/TESA in NOA. Targets focal spermatogenesis. PESA/TESA reserved for obstructive azoospermia. Klinefelter: microTESE achieves sperm in ~50%.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Klinefelter syndrome — karyotype and fertility implication?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>47XXY — most common cause of primary hypogonadism and azoospermia.</strong> microTESE possible in ~50%. ICSI with PGT-A recommended (increased sex chromosome aneuploidy in offspring). Do NOT start testosterone before sperm retrieval.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Sperm DNA fragmentation — clinical threshold?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>DFI &gt;30% — significantly reduced IVF/ICSI success.</strong> ESHRE: not routine screening, indicated in unexplained infertility, RPL, repeated ART failure. ICSI may partially overcome DFI for fertilisation but not embryo development.</div></div>
+      </div>
+      <div style="padding:10px 18px;border-top:1px solid rgba(159,208,188,.12);display:flex;align-items:center;justify-content:center;gap:6px;background:var(--fog);cursor:pointer;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--lock);text-transform:uppercase;letter-spacing:1px" onclick="openGate()">🔐 &nbsp; Unlock full domain bank</div>
+    </div>
+
+    <div class="card" style="overflow:hidden;border-top:3px solid #6ab8d0">
+      <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(159,208,188,.12)">
+        <div><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:2px">Reproductive Surgery</h4><p style="font-size:.68rem;color:var(--soft)">Endometriosis · Fibroids · Uterine anomalies · Ectopic</p></div>
+        <div style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--teal)">D5</div>
+      </div>
+      <div style="padding:8px 18px 4px">
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Endometrioma surgery before IVF — ESHRE recommendation?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>NOT recommended routinely before IVF.</strong> ESHRE endometriosis 2022: cystectomy does not improve LBR AND reduces ovarian reserve. Surgery for: rapidly growing, &gt;3cm with poor access, persistent pain, malignancy suspicion.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Hydrosalpinx effect on IVF — recommended management?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Reduces IVF LBR by ~50% — salpingectomy or proximal tubal occlusion before IVF.</strong> Hydrosalpinx fluid is embryotoxic AND impairs endometrial receptivity. Salpingectomy preferred per NICE and ESHRE. Cochrane confirms significantly improved LBR.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Which uterine anomaly most commonly causes RPL?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Septate uterus.</strong> Most common Müllerian anomaly (35%). Associated with highest RPL rate (60–65% pregnancy loss). ESHRE RPL: hysteroscopic metroplasty significantly reduces miscarriage rate. ESGE/ESHRE Class U2.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>ASRM Stage IV endometriosis — score?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Score &gt;40.</strong> ASRM revised classification: Stage I (1–5), II (6–15), III (16–40), IV (&gt;40). Stage IV = dense adhesions, bilateral endometriomas, obliteration of POD. NOTE: AFS score does NOT predict fertility outcome reliably.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Asherman syndrome — gold standard diagnosis and treatment?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Hysteroscopy — gold standard for both diagnosis AND treatment.</strong> ESHRE: complete adhesiolysis under hysteroscopic vision. Post-treatment oestrogen therapy to promote endometrial regeneration. Second-look hysteroscopy 2–4 weeks in severe cases.</div></div>
+      </div>
+      <div style="padding:10px 18px;border-top:1px solid rgba(159,208,188,.12);display:flex;align-items:center;justify-content:center;gap:6px;background:var(--fog);cursor:pointer;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--lock);text-transform:uppercase;letter-spacing:1px" onclick="openGate()">🔐 &nbsp; Unlock full domain bank</div>
+    </div>
+
+    <div class="card" style="overflow:hidden;border-top:3px solid #8ec8c0">
+      <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(159,208,188,.12)">
+        <div><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:2px">Early Pregnancy &amp; Implantation</h4><p style="font-size:.68rem;color:var(--soft)">RIF · RPL · Ectopic · βhCG interpretation</p></div>
+        <div style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--teal)">D6</div>
+      </div>
+      <div style="padding:8px 18px 4px">
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>ESHRE definition of Recurrent Implantation Failure (RIF)?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Failure to achieve clinical pregnancy after ≥3 good quality embryos in ≥3 fresh or frozen cycles in a woman under 40.</strong> ESHRE RIF guideline 2023. NOT the same as RPL. Most adjuncts (ERA, endometrial scratch, immunologicals) — insufficient evidence for routine use.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Expected βhCG rise at 48 hours — viable IUP?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>≥66% rise in 48 hours.</strong> NOT "doubling" — minimum 66% is evidence-based. Rise &lt;53% = non-viable. 53–66% = indeterminate — repeat. Discriminatory zone: ~1500–2000 IU/L. Single βhCG is NEVER diagnostic.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Most common cause of RPL?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Embryonic chromosomal abnormality (~50% of cases).</strong> APS is the most important treatable cause. Thrombophilia panel: lupus anticoagulant, anticardiolipin IgG/IgM, anti-β2GP1 — on 2 occasions, 12 weeks apart.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>First-line treatment for APS in RPL?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Low-dose aspirin + LMWH.</strong> ESHRE and RCOG: combination therapy reduces miscarriage from ~90% to ~75%. Start aspirin pre-conceptually, add LMWH once pregnancy confirmed. Continue to 34 weeks minimum.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>MTX criteria for ectopic pregnancy?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Haemodynamically stable + βhCG &lt;5000 IU/L + adnexal mass &lt;35mm + no cardiac activity + no rupture.</strong> NICE NG126. Single-dose MTX 50mg/m². Repeat βhCG day 4 and 7 — if &lt;15% fall, consider repeat or surgery.</div></div>
+      </div>
+      <div style="padding:10px 18px;border-top:1px solid rgba(159,208,188,.12);display:flex;align-items:center;justify-content:center;gap:6px;background:var(--fog);cursor:pointer;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--lock);text-transform:uppercase;letter-spacing:1px" onclick="openGate()">🔐 &nbsp; Unlock full domain bank</div>
+    </div>
+
+    <!-- Domain 7 full width -->
+    <div class="card" style="overflow:hidden;border-top:3px solid #e8a330;grid-column:1/-1">
+      <div style="padding:16px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(159,208,188,.12)">
+        <div><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:2px">Fertility Preservation</h4><p style="font-size:.68rem;color:var(--soft)">Oncofertility · Social freezing · Transgender FP · Cryobiology</p></div>
+        <div style="font-family:'DM Mono',monospace;font-size:1rem;font-weight:500;color:var(--teal)">D7</div>
+      </div>
+      <div style="padding:8px 18px 4px;display:grid;grid-template-columns:1fr 1fr;gap:0 24px">
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Highest gonadotoxic chemotherapy agents?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Alkylating agents — cyclophosphamide, chlorambucil, busulfan.</strong> Direct DNA damage to primordial follicles — irreversible. ESHRE FP: strongest indication for urgent FP. Radiation &gt;2Gy to ovaries also highly gonadotoxic.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>When is ovarian tissue cryopreservation preferred over oocyte freezing?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Prepubertal girls, or when stimulation not possible.</strong> Oocyte freezing requires 10–14 days. Not possible prepubertal or when chemotherapy cannot be delayed. ESHRE: ovarian tissue banking no longer experimental for female FP.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Transgender male FP — timing relative to testosterone therapy?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Before initiating testosterone OR after cessation.</strong> Testosterone suppresses ovarian function but does NOT eliminate fertility permanently. Stimulation possible after cessation (6–8 weeks for menstrual resumption). Transabdominal USS monitoring preferred.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;border-bottom:1px dashed rgba(0,0,0,.06);cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>Recommended age for social egg freezing — ESHRE?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Before age 35, ideally before 37.</strong> ESHRE FP 2020: oocyte yield and quality decline significantly after 35. &lt;35: expect 15–20+ MII. After 40: poor outcomes from own eggs — counsel toward donor. Minimum 8–10 MII for acceptable cumulative LBR.</div></div>
+        <div class="pq" onclick="this.querySelector('.pa').classList.toggle('show')"><div style="font-size:.78rem;color:var(--mid);line-height:1.5;padding:9px 0;cursor:pointer;display:flex;gap:7px;align-items:flex-start"><span style="font-family:'DM Mono',monospace;font-size:.58rem;background:var(--fog);color:var(--teal);padding:2px 5px;border-radius:4px;flex-shrink:0;margin-top:1px">Q</span>GnRH agonist co-treatment during chemotherapy — evidence for ovarian protection?</div><div class="pa" style="display:none;padding:9px 12px;background:linear-gradient(135deg,#f0f9fc,#e8f7f2);border-radius:8px;margin:4px 0 8px;font-size:.74rem;color:var(--mid);line-height:1.6"><strong>Controversial — NOT recommended as sole FP method.</strong> ESHRE FP: may reduce ovarian failure in some studies but does NOT reliably protect primordial follicle pool. ASCO 2018: insufficient evidence. Should NOT replace established FP methods.</div></div>
+      </div>
+      <div style="padding:10px 18px;border-top:1px solid rgba(159,208,188,.12);display:flex;align-items:center;justify-content:center;gap:6px;background:var(--fog);cursor:pointer;font-size:.7rem;font-family:'DM Mono',monospace;color:var(--lock);text-transform:uppercase;letter-spacing:1px" onclick="openGate()">🔐 &nbsp; Unlock full domain bank — register free</div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#1a3530,#253f3a);border-radius:15px;padding:24px 28px;color:white;text-align:center;margin-top:16px" class="fade-up">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:white;margin-bottom:8px">Full Question Bank — Launching Q4 2026</p>
+    <p style="font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.75;max-width:500px;margin:0 auto 16px">800+ questions · 7 domain modules · 1-page high-yield sheets · Personal error notebook · Mock papers. Next Part 1 sitting: March 2027.</p>
+    <button onclick="openGate()" style="background:var(--mint);color:var(--ink);border:none;border-radius:20px;padding:10px 22px;font-size:.78rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">Register for early access</button>
+  </div>
+</div>
+</section>
+<footer>StudyEFRM Part 1 · <strong>Next sitting: March 2027.</strong> Full bank launches Q4 2026.</footer>
+</div>
+
+<!-- ══════════ PAGE 5: LIVE CASES ══════════ -->
+<div id="page-cases" class="page">
+<div style="padding:110px 56px 48px;background:linear-gradient(155deg,#d5eef8,#c8e6dc,#c0e4e0)">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);background:rgba(255,255,255,.7);border:1px solid rgba(79,158,172,.28);padding:5px 12px;border-radius:13px;display:inline-block;margin-bottom:16px">Real Clinic Cases · Precision Fertility · 2026</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.5vw,3.1rem);color:var(--ink);line-height:1.08;margin-bottom:13px;max-width:700px">Clinical decision traps.<br><em style="color:var(--teal)">Universal errors. OSCE-ready reasoning.</em></h1>
+    <p style="font-size:.86rem;color:var(--mid);max-width:540px;line-height:1.8;font-weight:300">Each case is built around a clinical scenario, a common decision error any clinician might make, and the guideline-specified correct reasoning pathway. Not a case diary — a cognitive training module.</p>
+    <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;align-items:center">
+      <span class="free-badge">✓ Free Demo Case</span>
+      <span style="font-size:.74rem;color:var(--soft)">Station 2 · Paediatric Gynaecology · Common error + examiner challenges</span>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:7px;align-items:center">
+      <span class="gated-badge">🔐 Gated · 15+ Cases</span>
+      <span style="font-size:.74rem;color:var(--soft)">All clinical cases — each built as a decision trap + guideline anchor + examiner challenge</span>
+    </div>
+  </div>
+</div>
+
+<section class="bg-fog">
+<div class="sec">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px" class="fade-up">
+    <button style="font-family:'DM Mono',monospace;font-size:.65rem;padding:6px 13px;border-radius:18px;border:1px solid rgba(159,208,188,.3);background:var(--teal);color:white;cursor:pointer" onclick="filterC('all',this)">All Cases</button>
+    <button style="font-family:'DM Mono',monospace;font-size:.65rem;padding:6px 13px;border-radius:18px;border:1px solid rgba(159,208,188,.3);background:white;color:var(--mid);cursor:pointer;transition:all .2s" onclick="filterC('s2',this)">Station 2</button>
+    <button style="font-family:'DM Mono',monospace;font-size:.65rem;padding:6px 13px;border-radius:18px;border:1px solid rgba(159,208,188,.3);background:white;color:var(--mid);cursor:pointer;transition:all .2s" onclick="filterC('s3',this)">Station 3</button>
+    <button style="font-family:'DM Mono',monospace;font-size:.65rem;padding:6px 13px;border-radius:18px;border:1px solid rgba(159,208,188,.3);background:white;color:var(--mid);cursor:pointer;transition:all .2s" onclick="filterC('s5',this)">Station 5</button>
+    <button style="font-family:'DM Mono',monospace;font-size:.65rem;padding:6px 13px;border-radius:18px;border:1px solid rgba(159,208,188,.3);background:white;color:var(--mid);cursor:pointer;transition:all .2s" onclick="filterC('s6',this)">Station 6</button>
+    <button style="font-family:'DM Mono',monospace;font-size:.65rem;padding:6px 13px;border-radius:18px;border:1px solid rgba(159,208,188,.3);background:white;color:var(--mid);cursor:pointer;transition:all .2s" onclick="filterC('decision',this)">Decision</button>
+    <button style="font-family:'DM Mono',monospace;font-size:.65rem;padding:6px 13px;border-radius:18px;border:1px solid rgba(159,208,188,.3);background:white;color:var(--mid);cursor:pointer;transition:all .2s" onclick="filterC('counselling',this)">Counselling</button>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#e8f5ff,#ddf5f0);border-radius:13px;padding:16px 20px;margin-bottom:20px;border:1px solid rgba(79,158,172,.16)" class="fade-up">
+    <p style="font-size:.8rem;color:var(--mid);line-height:1.75"><strong style="color:var(--ink)">Case architecture:</strong> Each case is built as a clinical trigger → common pitfall any clinician might make → examiner challenge → guideline-specified correct reasoning. Not a case diary. A cognitive training module designed to reveal the exact decision traps the EFRM OSCE tests.</p>
+  </div>
+
+  <!-- DEMO CASE — FREE AND FULLY OPEN -->
+  <div class="card fade-up" style="margin-bottom:22px;overflow:hidden" data-station="s2" data-type="decision">
+    <div style="background:linear-gradient(135deg,#d8f5eb,#c8f0e0);padding:6px 18px;display:flex;align-items:center;gap:6px;font-size:.66rem;font-family:'DM Mono',monospace;color:#2d8a65;border-bottom:1px solid rgba(62,168,136,.15)">✓ DEMO CASE — FREE ACCESS · No registration required · Station 2 · Paediatric &amp; Adolescent Gynaecology</div>
+    <div style="padding:18px 20px 12px">
+      <h4 style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--ink);margin-bottom:6px">Adolescent Female — Irregular Menses, Hyperandrogenism, Metabolic Features</h4>
+      <p style="font-size:.74rem;color:var(--soft);line-height:1.55;margin-bottom:8px">A 17-year-old presenting to gynaecology OPD. This case illustrates the single most common diagnostic error made in adolescent PCOS — and the examiner question most candidates cannot answer cleanly.</p>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px">
+        <span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 2</span>
+        <span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:6px;background:#f0eaff;color:#6840a0">Paediatric Gynaecology</span>
+        <span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:6px;background:#d8f5eb;color:#2d8a65">Decision</span>
+        <span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 8px;border-radius:6px;background:#fff0d8;color:#a0700a">ESHRE 2023 Adolescent PCOS</span>
+      </div>
+    </div>
+    <div style="padding:0 20px 14px">
+      <p style="font-size:.8rem;color:var(--mid);line-height:1.65;margin-bottom:16px"><strong>Clinical scenario:</strong> 17-year-old female. Menarche age 12. Menses occur only with progesterone withdrawal or after a full 21-day OCP course. BMI 33.3. Ferriman-Gallwey score 10. Acanthosis nigricans. USS: bilateral polycystic ovarian morphology. Fasting insulin 25 mIU/ml. Testosterone 0.9 ng/ml. Day 2 FSH/LH: 7/7. TSH 1.3. Prolactin normal.</p>
+
+      <div style="background:var(--fog);border-radius:11px;padding:14px 16px;margin-bottom:14px;border-left:3px solid var(--teal)">
+        <p style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:7px">Clinical Question</p>
+        <p style="font-size:.76rem;color:var(--mid);line-height:1.6;font-style:italic">In a 17-year-old with menstrual irregularity, clinical hyperandrogenism, and polycystic morphology on USS, what is the correct diagnostic framework — and where does the standard clinical approach most commonly go wrong?</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
+        <div style="background:white;border-radius:11px;padding:14px 16px;border:1px solid rgba(212,95,95,.2)">
+          <p style="font-family:'DM Mono',monospace;font-size:.58rem;color:#b54040;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">⚠️ The Common Error</p>
+          <p style="font-size:.74rem;color:var(--mid);line-height:1.6">Applying adult Rotterdam criteria directly to an adolescent. <strong>This is the most frequently made diagnostic error in this station.</strong> Clinicians see polycystic morphology and two Rotterdam features and reach a PCOS diagnosis — without recognising that Rotterdam was not validated within 8 years of menarche. PCOM is present in up to 40% of adolescents without PCOS.</p>
+        </div>
+        <div style="background:white;border-radius:11px;padding:14px 16px;border:1px solid rgba(62,168,136,.2)">
+          <p style="font-family:'DM Mono',monospace;font-size:.58rem;color:#2d8a65;text-transform:uppercase;letter-spacing:1px;margin-bottom:7px">✅ ESHRE 2023 — Correct Reasoning</p>
+          <p style="font-size:.74rem;color:var(--mid);line-height:1.6">✓ Hyperandrogenism — FG 10, testosterone 0.9 ng/ml (elevated)<br>✓ Ovulatory dysfunction — cycles only with withdrawal<br>✓ Metabolic features — HOMA-IR elevated, acanthosis<br><strong>This patient meets adolescent PCOS criteria — 2 criteria met.</strong></p>
+        </div>
+      </div>
+
+      <div style="background:white;border-radius:11px;padding:14px 16px;border:1px solid rgba(159,208,188,.2);margin-bottom:14px">
+        <p style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--mid);text-transform:uppercase;letter-spacing:1px;margin-bottom:9px">Next-Step Gaps — What Candidates Commonly Miss</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          <div style="font-size:.72rem;color:var(--mid);line-height:1.65">⚠️ OGTT not done — fasting insulin alone insufficient for HOMA-IR<br>⚠️ 17-OHP not checked — must exclude NCCAH before PCOS diagnosis<br>⚠️ DHEAS, SHBG, free androgen index not measured</div>
+          <div style="font-size:.72rem;color:var(--mid);line-height:1.65">⚠️ OCP for only 3 cycles — ESHRE recommends 6–12 months minimum<br>⚠️ Spironolactone without contraception counselling (teratogenic)<br>⚠️ No VTE risk assessment for OCP in obese adolescent</div>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,#1a3530,#243f3a);border-radius:11px;padding:14px 16px">
+        <p style="font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.42);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">Examiner Challenges — Station 2</p>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <div style="background:rgba(255,255,255,.06);border-radius:7px;padding:9px 12px"><p style="font-size:.72rem;color:rgba(255,255,255,.68);font-style:italic">"The scan shows polycystic morphology and two Rotterdam features are present. Why is that not sufficient to diagnose PCOS in this patient?"</p></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:7px;padding:9px 12px"><p style="font-size:.72rem;color:rgba(255,255,255,.68);font-style:italic">"Fasting insulin is 25 mIU/ml. How would you formally assess insulin resistance — and what would a confirmed diagnosis change about the management plan?"</p></div>
+          <div style="background:rgba(255,255,255,.06);border-radius:7px;padding:9px 12px"><p style="font-size:.72rem;color:rgba(255,255,255,.68);font-style:italic">"An antiandrogen is being considered. What is the single most important counselling point before prescribing it to a 17-year-old girl?"</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GATED CASES -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px" class="fade-up" id="cases-grid">
+
+    <div class="card" style="overflow:hidden;position:relative" data-station="s5" data-type="decision">
+      <div style="padding:16px 18px 12px"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:7px">30F · P3L3 · 3 LSCS · NC-FET · 4AA Blastocyst</h4><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px"><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 5</span><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 3</span><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#d8f5eb;color:#2d8a65">Decision</span></div></div>
+      <p style="font-size:.74rem;color:var(--soft);line-height:1.55;padding:0 18px 12px">Tubal ligation. Teratozoospermia. AMH 1.3. 4AA blastocyst — significant collapse at 40× post-thaw. P4 30 ng/ml. 7-domain PICO analysis + scorecard + 5 examiner questions.</p>
+      <div style="position:absolute;inset:0;background:rgba(248,252,251,.93);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer" onclick="openGate()"><span style="font-size:1.3rem">🔐</span><span style="font-size:.68rem;font-family:'DM Mono',monospace;color:var(--lock);letter-spacing:1px;text-transform:uppercase">Register to access</span><span style="font-size:.66rem;color:var(--soft)">Free · No payment required</span></div>
+    </div>
+
+    <div class="card" style="overflow:hidden;position:relative" data-station="s3" data-type="decision">
+      <div style="padding:16px 18px 12px"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:7px">37F · Single Ovary · Endometrioma 6×7cm · DFI 30%</h4><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px"><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 3</span><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 6</span></div></div>
+      <p style="font-size:.74rem;color:var(--soft);line-height:1.55;padding:0 18px 12px">6 MII → 100% fertilisation → 2 blastocysts frozen. 4/6 arrested at 4–8 cells. Embryo banking vs surgery dilemma. Oocyte images + Gardner grading + DFI impact analysis.</p>
+      <div style="position:absolute;inset:0;background:rgba(248,252,251,.93);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer" onclick="openGate()"><span style="font-size:1.3rem">🔐</span><span style="font-size:.68rem;font-family:'DM Mono',monospace;color:var(--lock);letter-spacing:1px;text-transform:uppercase">Register to access</span><span style="font-size:.66rem;color:var(--soft)">Free · No payment required</span></div>
+    </div>
+
+    <div class="card" style="overflow:hidden;position:relative" data-station="s5" data-type="decision">
+      <div style="padding:16px 18px 12px"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:7px">42F · POSEIDON Group 4 · BMI 36 · Kissing Ovaries · TSH 4.4</h4><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px"><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 5</span><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 1</span></div></div>
+      <p style="font-size:.74rem;color:var(--soft);line-height:1.55;padding:0 18px 12px">Untreated subclinical hypothyroidism at COS time. 3 MII → 2 blastocysts. DET plan — guideline violation documented. Protocol deviation analysis + 4 examiner probes.</p>
+      <div style="position:absolute;inset:0;background:rgba(248,252,251,.93);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer" onclick="openGate()"><span style="font-size:1.3rem">🔐</span><span style="font-size:.68rem;font-family:'DM Mono',monospace;color:var(--lock);letter-spacing:1px;text-transform:uppercase">Register to access</span><span style="font-size:.66rem;color:var(--soft)">Free · No payment required</span></div>
+    </div>
+
+    <div class="card" style="overflow:hidden;position:relative" data-station="s5" data-type="counselling">
+      <div style="padding:16px 18px 12px"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:7px">48F · Perimenopause · FGTB Sequelae · RA · Donor Oocyte Counselling</h4><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px"><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 5</span><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#fff0d8;color:#a0700a">Counselling</span></div></div>
+      <p style="font-size:.74rem;color:var(--soft);line-height:1.55;padding:0 18px 12px">FSH 19.9/LH 25.5. AMH 0.9. Bilateral tubal block. HbA1c 6.3. ART Act 2021 age limit discussion. Antiphospholipid panel + ESHRE donor oocyte framework.</p>
+      <div style="position:absolute;inset:0;background:rgba(248,252,251,.93);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer" onclick="openGate()"><span style="font-size:1.3rem">🔐</span><span style="font-size:.68rem;font-family:'DM Mono',monospace;color:var(--lock);letter-spacing:1px;text-transform:uppercase">Register to access</span><span style="font-size:.66rem;color:var(--soft)">Free · No payment required</span></div>
+    </div>
+
+    <div class="card" style="overflow:hidden;position:relative" data-station="s3" data-type="decision">
+      <div style="padding:16px 18px 12px"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:7px">30F · Adenomyosis · Azoospermia · Epilepsy · Recurrent FET Failure</h4><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px"><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 3</span><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 4</span></div></div>
+      <p style="font-size:.74rem;color:var(--soft);line-height:1.55;padding:0 18px 12px">Valproate switched. 3 failed FET preps. Recurrent left cyst luteinisation → P elevation. ERA + cystectomy discussion. RIF workup + AED in pregnancy analysis.</p>
+      <div style="position:absolute;inset:0;background:rgba(248,252,251,.93);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer" onclick="openGate()"><span style="font-size:1.3rem">🔐</span><span style="font-size:.68rem;font-family:'DM Mono',monospace;color:var(--lock);letter-spacing:1px;text-transform:uppercase">Register to access</span><span style="font-size:.66rem;color:var(--soft)">Free · No payment required</span></div>
+    </div>
+
+    <div class="card" style="overflow:hidden;position:relative" data-station="s6" data-type="decision">
+      <div style="padding:16px 18px 12px"><h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--ink);margin-bottom:7px">30F · Stage IV DIE · Bilateral Endometriomas · Kissing Ovaries · POSEIDON 3</h4><div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px"><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 6</span><span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">Station 5</span></div></div>
+      <p style="font-size:.74rem;color:var(--soft);line-height:1.55;padding:0 18px 12px">AMH 0.48. Left hematosalpinx. 2 years dienogest — major ESHRE error. Embryo banking vs surgery first. ESHRE endometriosis guideline + DIE surgical decision framework.</p>
+      <div style="position:absolute;inset:0;background:rgba(248,252,251,.93);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer" onclick="openGate()"><span style="font-size:1.3rem">🔐</span><span style="font-size:.68rem;font-family:'DM Mono',monospace;color:var(--lock);letter-spacing:1px;text-transform:uppercase">Register to access</span><span style="font-size:.66rem;color:var(--soft)">Free · No payment required</span></div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;padding:8px 0 0" class="fade-up">
+    <button onclick="openGate()" style="background:var(--teal);color:white;border:none;border-radius:26px;padding:12px 28px;font-size:.82rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;box-shadow:0 4px 18px rgba(79,158,172,.3)">Register free to access all 15+ cases →</button>
+  </div>
+</div>
+</section>
+<footer>Real IVF Clinic Cases · StudyEFRM · <strong>Every clinical decision is a potential OSCE station.</strong></footer>
+</div>
+
+<!-- ══════════ PAGE 6: MENTORSHIP ══════════ -->
+<div id="page-mentor" class="page">
+<div style="padding:110px 56px 48px;background:linear-gradient(158deg,#d5e8f5,#c5e2da,#bcdedd)">
+  <div style="max-width:1120px;margin:0 auto">
+    <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);background:rgba(255,255,255,.7);border:1px solid rgba(79,158,172,.28);padding:5px 12px;border-radius:13px;display:inline-block;margin-bottom:18px">Structured Mentorship · 6–8 Week Cohort</div>
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.4rem);color:var(--ink);line-height:1.08;margin-bottom:14px;max-width:640px">Not a teacher.<br><em style="color:var(--teal)">A Clinical Thinking Architect.</em></h1>
+    <p style="font-size:.88rem;color:var(--mid);max-width:500px;line-height:1.82;font-weight:300">Most mentorships dump content and solve doubts. This cohort builds a clinical reasoning system — the cognitive infrastructure to pass the EFRM and practise at subspecialist level.</p>
+  </div>
+</div>
+
+<section class="bg-fog">
+<div class="sec">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px" class="fade-up">
+    <div class="card" style="padding:20px"><h4 style="font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:10px">❌ This mentorship is NOT</h4><p style="font-size:.76rem;color:var(--soft);line-height:1.75">Doubt solving · Notes sharing · Casual WhatsApp guidance · Content dumping · Teaching facts one by one · Solving questions after the fact</p></div>
+    <div class="card" style="padding:20px"><h4 style="font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:10px">✅ This mentorship IS</h4><p style="font-size:.76rem;color:var(--mid);line-height:1.75">Structured clinical mentorship pathway · Correcting thinking patterns · Simplifying decision-making · Translating concepts into clinical logic · Building reasoning architecture</p></div>
+  </div>
+
+  <p class="sl fade-up">Weekly Template — Fixed Structure</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px" class="fade-up">
+    <div class="card" style="padding:18px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px">🧠 Concept Block</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.6">Foundation topic with structured guide. Output: What you must KNOW. Anchored to ESHRE guideline.</p></div>
+    <div class="card" style="padding:18px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px">🔁 Clinical Application</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.6">Real-world scenarios. Protocol selection. Decision pathways. Concept becomes clinical action.</p></div>
+    <div class="card" style="padding:18px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px">❓ Vantage Question Bank</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.6">15–25 SBA/EMQs per week. Same concept, multiple angles, different language. No déjà vu — deliberate.</p></div>
+    <div class="card" style="padding:18px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:5px">📊 Reflection + Error Loop</h4><p style="font-size:.72rem;color:var(--soft);line-height:1.6">You submit mistakes and confusions. Pattern correction. Thinking error identification. Error notebook activated.</p></div>
+  </div>
+
+  <p class="sl fade-up">8-Week Programme</p>
+  <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:28px" class="fade-up">
+    <div style="display:flex;gap:12px;align-items:stretch"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#72b4d0,#5ba3b0);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;color:white;flex-shrink:0;margin-top:2px">1</div><div class="card" style="flex:1;padding:13px 17px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px">Orientation + How to Think</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">EFRM system overview. Vantage-Point System introduction. How to study — not what to read.</p><div style="font-family:'DM Mono',monospace;font-size:.58rem;color:var(--teal);margin-top:4px">Focus: "How to think like a reproductive medicine specialist"</div></div></div>
+    <div style="display:flex;gap:12px;align-items:stretch"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#5ba3b0,#4f9eac);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;color:white;flex-shrink:0;margin-top:2px">2</div><div class="card" style="flex:1;padding:13px 17px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px">Ovarian Physiology &amp; Reserve</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">AMH, AFC, FSH threshold, POSEIDON classification. Poor vs normal vs high responder.</p></div></div>
+    <div style="display:flex;gap:12px;align-items:stretch"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#4f9eac,#3ea888);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;color:white;flex-shrink:0;margin-top:2px">3</div><div class="card" style="flex:1;padding:13px 17px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px">Stimulation Protocols + Triggers</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">Antagonist vs agonist. hCG vs GnRHa vs dual trigger. OHSS prevention hierarchy. Freeze-all decision.</p></div></div>
+    <div style="display:flex;gap:12px;align-items:stretch"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#3ea888,#38907a);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;color:white;flex-shrink:0;margin-top:2px">4</div><div class="card" style="flex:1;padding:13px 17px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px">Embryology + Lab Concepts</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">Fertilisation, blastocyst development, Gardner grading, vitrification, PGT. Istanbul Consensus criteria.</p></div></div>
+    <div style="display:flex;gap:12px;align-items:stretch"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#38907a,#2d8a65);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;color:white;flex-shrink:0;margin-top:2px">5</div><div class="card" style="flex:1;padding:13px 17px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px">ART Strategies + FET Protocols</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">IUI vs IVF vs ICSI indications. FET protocol selection. Luteal phase support evidence base.</p></div></div>
+    <div style="display:flex;gap:12px;align-items:stretch"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#8860c0,#7040a0);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;color:white;flex-shrink:0;margin-top:2px">6</div><div class="card" style="flex:1;padding:13px 17px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px">Implantation + RIF + RPL</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">Endometrial receptivity, RIF definition and workup. Adjuncts — evidence vs hype. RPL investigations.</p></div></div>
+    <div style="display:flex;gap:12px;align-items:stretch"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#7040a0,#583090);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;color:white;flex-shrink:0;margin-top:2px">7</div><div class="card" style="flex:1;padding:13px 17px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px">Full OSCE Simulation</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">Complete mock — all 7 stations. Timed viva. Adversarial probing on every answer.</p></div></div>
+    <div style="display:flex;gap:12px;align-items:stretch"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#583090,#1a3530);display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:.65rem;font-weight:500;color:white;flex-shrink:0;margin-top:2px">8</div><div class="card" style="flex:1;padding:13px 17px"><h4 style="font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:3px">Consolidation + Error Closure</h4><p style="font-size:.7rem;color:var(--soft);line-height:1.55">Error notebook deep review. Weak area targeting. Concept inversion questions. Readiness assessment.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section class="bg-sky">
+<div class="sec-sm">
+  <div style="background:linear-gradient(135deg,#1a3530,#253f3a);border-radius:20px;padding:34px 38px;color:white;position:relative;overflow:hidden" class="fade-up">
+    <div style="position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(72,180,208,.09),transparent 70%);top:-150px;right:-100px;pointer-events:none"></div>
+    <div style="position:relative;z-index:1">
+      <p style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:8px">Pilot Cohort · July 2026</p>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;color:white;margin-bottom:10px">EFRM Part 2 OSCE Cohort</h3>
+      <p style="font-size:.8rem;color:rgba(255,255,255,.6);line-height:1.75;max-width:480px">For candidates who have passed EFRM Part 1 and are preparing for the July 2026 or future OSCE. Structured 8-week pathway. Maximum 10 candidates per cohort.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin:22px 0;padding:18px 0;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)">
+        <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:white;font-weight:600;line-height:1">10</div><div style="font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-top:3px">Max candidates</div></div>
+        <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:white;font-weight:600;line-height:1">8</div><div style="font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-top:3px">Weeks</div></div>
+        <div style="text-align:center"><div style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:white;font-weight:600;line-height:1">7</div><div style="font-family:'DM Mono',monospace;font-size:.58rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px;margin-top:3px">Stations covered</div></div>
+      </div>
+      <p style="font-size:.76rem;color:rgba(255,255,255,.42);line-height:1.6;margin-bottom:16px">Capped at 10 — not for exclusivity, but because genuine individual attention is only possible at that scale.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button onclick="openGate()" style="padding:11px 22px;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;border:none;background:var(--mint);color:var(--ink);font-family:'DM Sans',sans-serif;transition:all .2s">Apply for July 2026 Cohort</button>
+        <button onclick="showPage('cases')" style="padding:11px 22px;border-radius:20px;font-size:.78rem;font-weight:500;cursor:pointer;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.18);font-family:'DM Sans',sans-serif;transition:all .2s">See live case examples first</button>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<footer>StudyEFRM Mentorship · <strong>Cohort-based · Structured · Capped at 10.</strong></footer>
+</div>
+
+<!-- ══════════ ADMIN: CASE LOGGER (hidden, token-protected) ══════════ -->
+<div id="page-admin" class="page">
+<div style="padding:100px 40px 40px;max-width:800px;margin:0 auto">
+  <div style="font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:20px">Admin · Case Pipeline</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--ink);margin-bottom:24px">Log a Clinical Case</h2>
+
+  <!-- Token auth -->
+  <div id="admin-auth" style="margin-bottom:24px">
+    <input id="admin-token-input" type="password" placeholder="Admin token"
+      style="width:100%;padding:12px 16px;border:1.5px solid rgba(159,208,188,.4);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.84rem;color:var(--ink);outline:none;margin-bottom:10px">
+    <button onclick="adminAuth()"
+      style="background:var(--teal);color:white;border:none;border-radius:11px;padding:10px 22px;font-size:.8rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif">
+      Unlock →
+    </button>
+    <p id="admin-auth-err" style="color:var(--danger);font-size:.74rem;margin-top:8px;display:none">Incorrect token.</p>
+  </div>
+
+  <!-- Case logging form — hidden until auth passes -->
+  <div id="admin-form" style="display:none">
+    <div style="margin-bottom:14px">
+      <label style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:6px">EFRM Station</label>
+      <select id="case-station" style="width:100%;padding:11px 14px;border:1.5px solid rgba(159,208,188,.4);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--ink);outline:none;background:white">
+        <option value="Station 1 — Reproductive Endocrinology">Station 1 — Reproductive Endocrinology</option>
+        <option value="Station 2 — Paediatric & Adolescent Gynaecology">Station 2 — Paediatric &amp; Adolescent Gynaecology</option>
+        <option value="Station 3 — Embryology / Genetics / Andrology">Station 3 — Embryology / Genetics / Andrology</option>
+        <option value="Station 4 — Early Pregnancy & Implantation">Station 4 — Early Pregnancy &amp; Implantation</option>
+        <option value="Station 5 — Infertility & MAR">Station 5 — Infertility &amp; MAR</option>
+        <option value="Station 6 — Fertility Preservation & Surgery">Station 6 — Fertility Preservation &amp; Surgery</option>
+        <option value="Station 7 — Abstract Appraisal">Station 7 — Abstract Appraisal</option>
+      </select>
+    </div>
+
+    <div style="margin-bottom:14px">
+      <label style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--soft);display:block;margin-bottom:6px">Raw Clinical Notes</label>
+      <textarea id="case-notes" rows="12" placeholder="Paste raw clinic notes here — names, dates, values, decisions, outcomes. The pipeline will anonymise and structure automatically."
+        style="width:100%;padding:12px 14px;border:1.5px solid rgba(159,208,188,.4);border-radius:11px;font-family:'DM Sans',sans-serif;font-size:.82rem;color:var(--ink);outline:none;resize:vertical;line-height:1.6"></textarea>
+    </div>
+
+    <button id="process-btn" onclick="processCase()"
+      style="background:var(--teal);color:white;border:none;border-radius:11px;padding:12px 28px;font-size:.84rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-bottom:20px">
+      Process via Claude →
+    </button>
+
+    <!-- Output -->
+    <div id="case-output" style="display:none">
+      <div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Teaching Case Output</div>
+      <div id="case-output-inner" style="background:var(--fog);border-radius:14px;padding:22px;border:1px solid rgba(159,208,188,.2);font-size:.82rem;color:var(--mid);line-height:1.75;white-space:pre-wrap;word-break:break-word"></div>
+      <div style="display:flex;gap:10px;margin-top:14px">
+        <button onclick="copyCase()"
+          style="background:white;border:1px solid rgba(159,208,188,.4);border-radius:10px;padding:8px 18px;font-size:.76rem;font-family:'DM Mono',monospace;color:var(--mid);cursor:pointer">
+          Copy JSON
+        </button>
+        <button onclick="resetCase()"
+          style="background:white;border:1px solid rgba(159,208,188,.4);border-radius:10px;padding:8px 18px;font-size:.76rem;font-family:'DM Mono',monospace;color:var(--mid);cursor:pointer">
+          New Case
+        </button>
+      </div>
+    </div>
+
+    <div id="case-error" style="display:none;background:#fce8e8;border-radius:11px;padding:14px 16px;font-size:.78rem;color:#b54040;margin-top:10px"></div>
+  </div>
+</div>
+</div>
+
+<script>
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const pg=document.getElementById('page-'+name);
+  const nv=document.getElementById('nav-'+name);
+  if(pg)pg.classList.add('active');
+  if(nv)nv.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(initFade,80);
+}
+function initFade(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+  },{threshold:0.06});
+  document.querySelectorAll('.page.active .fade-up:not(.visible)').forEach((el,i)=>{
+    el.style.transitionDelay=(i%4*.08)+'s';
+    obs.observe(el);
+  });
+}
+initFade();
+function openGate(){document.getElementById('gate-modal').classList.add('open')}
+function closeGate(){
+  document.getElementById('gate-modal').classList.remove('open');
+  // Reset form state for next open
+  document.getElementById('gate-form-wrap').style.display='block';
+  document.getElementById('gate-success').style.display='none';
+}
+async function submitGate(){
+  const email=document.getElementById('gate-email').value.trim();
+  const name=document.getElementById('gate-name').value.trim();
+  const country=document.getElementById('gate-country').value.trim();
+  const stage=document.getElementById('gate-stage').value.trim();
+  if(!email||!email.includes('@')){
+    document.getElementById('gate-email').style.borderColor='var(--danger)';
+    return;
+  }
+  const btn=document.querySelector('.gate-btn');
+  btn.textContent='Submitting…';
+  btn.disabled=true;
+  try{
+    const res=await fetch('https://formspree.io/f/mnjwblqk',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        email,
+        name:name||'(not provided)',
+        country:country||'(not provided)',
+        efrm_stage:stage||'(not provided)',
+        _subject:`StudyEFRM Access Request — ${name||email}`,
+        _replyto:email,
+        source:'studyefrm.com gate',
+        timestamp:new Date().toISOString()
+      })
+    });
+    if(res.ok){
+      document.getElementById('gate-form-wrap').style.display='none';
+      document.getElementById('gate-success').style.display='block';
+    } else {
+      btn.textContent='Request Access →';
+      btn.disabled=false;
+      alert('Something went wrong. Please try again or email hello@precisionfertility.in directly.');
+    }
+  } catch(err){
+    btn.textContent='Request Access →';
+    btn.disabled=false;
+    alert('Network error. Please try again.');
+  }
+}
+document.getElementById('gate-modal').addEventListener('click',function(e){
+  if(e.target===this)closeGate();
+});
+function filterC(type,btn){
+  document.querySelectorAll('#cases-grid .card').forEach(c=>{
+    if(type==='all'){c.style.display='';return}
+    const s=c.dataset.station||'';const t=c.dataset.type||'';
+    c.style.display=(s.includes(type)||t.includes(type))?'':'none';
+  });
+  document.querySelectorAll('[onclick^="filterC"]').forEach(b=>{b.style.background='white';b.style.color='var(--mid)'});
+  btn.style.background='var(--teal)';btn.style.color='white';
+}
+
+// ── ADMIN CASE PIPELINE ──
+// Token validated server-side in Netlify Function — client-side is UX only.
+let _aUnlocked=false,_aToken='';
+function adminAuth(){
+  const t=document.getElementById('admin-token-input').value.trim();
+  if(!t)return;
+  _aUnlocked=true;_aToken=t;
+  document.getElementById('admin-auth').style.display='none';
+  document.getElementById('admin-form').style.display='block';
+  document.getElementById('admin-auth-err').style.display='none';
+}
+async function processCase(){
+  if(!_aUnlocked)return;
+  const notes=document.getElementById('case-notes').value.trim();
+  const station=document.getElementById('case-station').value;
+  if(notes.length<20){showCaseError('Notes too short.');return;}
+  const btn=document.getElementById('process-btn');
+  btn.textContent='Processing…';btn.disabled=true;
+  document.getElementById('case-output').style.display='none';
+  document.getElementById('case-error').style.display='none';
+  try{
+    const res=await fetch('/.netlify/functions/process-case',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-admin-token':_aToken},
+      body:JSON.stringify({rawNotes:notes,station})
+    });
+    if(res.status===401){
+      _aUnlocked=false;
+      document.getElementById('admin-form').style.display='none';
+      document.getElementById('admin-auth').style.display='block';
+      document.getElementById('admin-auth-err').style.display='block';
+      btn.textContent='Process via Claude →';btn.disabled=false;return;
+    }
+    const data=await res.json();
+    btn.textContent='Process via Claude →';btn.disabled=false;
+    if(data.parseError){
+      document.getElementById('case-output-inner').textContent=data.raw;
+      document.getElementById('case-output').style.display='block';
+      return;
+    }
+    // Render dual output
+    renderDualOutput(data);
+    document.getElementById('case-output').style.display='block';
+  }catch(err){
+    btn.textContent='Process via Claude →';btn.disabled=false;
+    showCaseError('Network error. Check Netlify function is deployed.');
+  }
+}
+
+function renderDualOutput(data){
+  const fa=data.fullAnalysis;
+  const tc=data.teachingCard;
+  let html='';
+
+  // ── FULL ANALYSIS ──
+  html+=`<div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:#4f9eac;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid rgba(79,158,172,.2)">FULL CLINICAL ANALYSIS — FOR YOUR LEARNING</div>`;
+  html+=`<p style="font-weight:600;margin-bottom:16px">${fa.patientSummary||''}</p>`;
+
+  // Domains
+  (fa.domains||[]).forEach(d=>{
+    const col=d.guidelineVerdict==='aligned'?'#2d8a65':d.guidelineVerdict==='gap'?'#a0700a':'#b54040';
+    const icon=d.guidelineVerdict==='aligned'?'✅':d.guidelineVerdict==='gap'?'⚠️':'❌';
+    html+=`<div style="background:rgba(234,244,240,.5);border-radius:10px;padding:14px 16px;margin-bottom:12px;border-left:3px solid ${col}">`;
+    html+=`<div style="font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:${col};margin-bottom:6px">Domain ${d.domainNumber} — ${d.domainTitle}</div>`;
+    html+=`<div style="font-size:.75rem;margin-bottom:5px;font-style:italic;color:#578a7e"><strong>PICO:</strong> ${d.pico||''}</div>`;
+    html+=`<div style="font-size:.75rem;margin-bottom:5px"><strong>Guideline:</strong> ${d.evidenceBenchmark||''}</div>`;
+    html+=`<div style="font-size:.75rem;margin-bottom:5px"><strong>Decision made:</strong> ${d.clinicalDecisionMade||''}</div>`;
+    html+=`<div style="font-size:.75rem;margin-bottom:8px">${icon} <strong>${d.verdictExplanation||''}</strong></div>`;
+    if(d.examinerProbes?.length){
+      html+=`<div style="font-size:.7rem;color:#578a7e"><strong>Examiner probes:</strong> ${d.examinerProbes.map(p=>`"${p}"`).join(' · ')}</div>`;
+    }
+    html+=`</div>`;
+  });
+
+  // Scorecard
+  if(fa.scorecard?.length){
+    html+=`<div style="font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:#578a7e;margin:16px 0 8px">Scorecard</div>`;
+    fa.scorecard.forEach(s=>{
+      html+=`<div style="font-size:.74rem;padding:5px 0;border-bottom:1px dashed rgba(0,0,0,.06)">${s.verdict} ${s.decision} <span style="color:#4f9eac;font-size:.68rem">${s.guidelineRef||''}</span></div>`;
+    });
+  }
+
+  // Key errors
+  if(fa.keyErrorsAndLearning?.length){
+    html+=`<div style="font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:#b54040;margin:16px 0 8px">Key Errors & Learning</div>`;
+    fa.keyErrorsAndLearning.forEach(e=>{
+      html+=`<div style="font-size:.74rem;padding:4px 0;color:#3a6358">• ${e}</div>`;
+    });
+  }
+
+  // Top 3 examiner Q&A
+  if(fa.top3ExaminerQuestions?.length){
+    html+=`<div style="font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:#578a7e;margin:16px 0 8px">Top Examiner Q&A</div>`;
+    fa.top3ExaminerQuestions.forEach(q=>{
+      html+=`<div style="background:rgba(26,53,48,.04);border-radius:8px;padding:10px 12px;margin-bottom:8px">`;
+      html+=`<div style="font-size:.72rem;font-style:italic;color:#1a3530;margin-bottom:5px">"${q.question}"</div>`;
+      html+=`<div style="font-size:.72rem;color:#3a6358"><strong>Model answer:</strong> ${q.modelAnswer}</div>`;
+      html+=`</div>`;
+    });
+  }
+
+  // ── TEACHING CARD ──
+  html+=`<div style="font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:#3ea888;margin:28px 0 12px;padding-top:20px;border-top:2px solid rgba(62,168,136,.2)">TEACHING CARD — READY TO PUBLISH</div>`;
+  html+=`<div style="background:rgba(216,240,232,.4);border-radius:10px;padding:16px 18px;border:1px solid rgba(159,208,188,.3)">`;
+  html+=`<div style="font-weight:600;font-size:.84rem;margin-bottom:8px">${tc.title||''}</div>`;
+  html+=`<div style="font-family:'DM Mono',monospace;font-size:.62rem;color:#4f9eac;margin-bottom:10px">${tc.station||''}</div>`;
+  html+=`<div style="font-size:.78rem;color:#3a6358;margin-bottom:10px">${tc.scenario||''}</div>`;
+  html+=`<div style="font-size:.76rem;color:#b54040;margin-bottom:6px"><strong>Common error:</strong> ${tc.commonError||''}</div>`;
+  html+=`<div style="font-size:.76rem;color:#2d8a65;margin-bottom:10px"><strong>ESHRE anchor:</strong> ${tc.eshreAnchor||''}</div>`;
+  if(tc.nextStepGaps?.length){
+    html+=`<div style="font-size:.74rem;color:#578a7e;margin-bottom:8px"><strong>Next-step gaps:</strong><br>${tc.nextStepGaps.map(g=>`⚠️ ${g}`).join('<br>')}</div>`;
+  }
+  if(tc.examinerChallenges?.length){
+    html+=`<div style="font-size:.74rem;color:#1a3530"><strong>Examiner challenges:</strong><br>${tc.examinerChallenges.map(c=>`"${c}"`).join('<br>')}</div>`;
+  }
+  html+=`</div>`;
+
+  // Inject — using innerHTML here is safe: all content is Claude-generated server-side,
+  // not user-supplied DOM injection.
+  document.getElementById('case-output-inner').innerHTML=html;
+}
+function showCaseError(msg){
+  const el=document.getElementById('case-error');
+  el.textContent=msg;el.style.display='block';
+}
+function copyCase(){
+  navigator.clipboard.writeText(
+    document.getElementById('case-output-inner').textContent
+  ).then(()=>alert('Copied.'));
+}
+function resetCase(){
+  document.getElementById('case-notes').value='';
+  document.getElementById('case-output').style.display='none';
+  document.getElementById('case-error').style.display='none';
+}
+// Hash access — obscurity only, real auth is the server-side token
+if(window.location.hash==='#adminpanel'){
+  showPage('admin');
+  history.replaceState(null,'',window.location.pathname);
+}
+</script>
+</body>
+</html>
