@@ -98,8 +98,8 @@ Produce both fullAnalysis and teachingCard as specified.`;
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1200,
+        model: 'claude-opus-4-6',
+        max_tokens: 4000,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
       })
@@ -140,4 +140,3 @@ Produce both fullAnalysis and teachingCard as specified.`;
     })
   };
 };
-
