@@ -1191,17 +1191,57 @@ function toggleDomain(btn){
 }
 
 // ── ACTIONS ──
-function approveCase(){
+async function approveCase(){
   if(!_current) return;
-  _current.status = 'approved';
-  _pubQueue.push({..._current, approvedAt: new Date().toISOString()});
-  updateCounts();
-  setStepper('pub');
   const btn = document.getElementById('approve-btn');
-  btn.innerHTML = '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Approved';
   btn.disabled = true;
-  btn.style.background = 'var(--guideline-500)';
-  btn.style.borderColor = 'var(--guideline-700)';
+  btn.textContent = 'Publishing…';
+
+  const approvedAt = new Date().toISOString();
+
+  try {
+    const res = await fetch('/.netlify/functions/store-case', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-token': _token },
+      body: JSON.stringify({
+        id: _current.id,
+        station: _current.station,
+        approvedAt,
+        teachingCard: _current.tc,
+      }),
+    });
+
+    if (res.status === 401) { signOut(); return; }
+
+    if (!res.ok) {
+      btn.disabled = false;
+      btn.innerHTML = '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Approve &amp; queue';
+      showErr('Failed to publish. Check Netlify Blobs is enabled for this site.');
+      return;
+    }
+
+    // Success
+    _current.status = 'approved';
+    _pubQueue.push({..._current, approvedAt});
+    updateCounts();
+    setStepper('pub');
+    btn.innerHTML = '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Published';
+    btn.style.background = 'var(--guideline-500)';
+    btn.style.borderColor = 'var(--guideline-700)';
+
+    // Show confirmation
+    showErr('');
+    const notice = document.createElement('div');
+    notice.style.cssText = 'padding:12px 16px;background:var(--guideline-50);border:1px solid color-mix(in srgb,var(--guideline-500) 25%,transparent);border-radius:var(--radius-md);margin-bottom:16px;font-size:13px;color:var(--guideline-700)';
+    notice.textContent = 'Teaching card published. It will appear in the Cases section of studyefrm.com immediately.';
+    document.getElementById('output-area').prepend(notice);
+    setTimeout(()=>notice.remove(), 6000);
+
+  } catch(err) {
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Approve &amp; queue';
+    showErr('Network error. Check function deployment.');
+  }
 }
 
 function resetCase(){

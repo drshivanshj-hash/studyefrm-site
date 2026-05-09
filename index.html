@@ -929,7 +929,54 @@ function filterC(type,btn){
   btn.style.background='var(--teal)';btn.style.color='white';
 }
 
-// ── ADMIN CASE PIPELINE ──
+// ── LIVE CASES FROM NETLIFY BLOBS ──
+// Fetches approved teaching cards and injects them into the cases grid.
+// Runs on page load — no redeploy needed when new cases are published.
+async function loadLiveCases(){
+  try {
+    const res = await fetch('/.netlify/functions/get-cases');
+    if(!res.ok) return;
+    const cards = await res.json();
+    if(!cards.length) return;
+    const grid = document.getElementById('cases-grid');
+    if(!grid) return;
+    cards.forEach(c=>{
+      const tc = c.teachingCard;
+      if(!tc) return;
+      // Extract station number for filter attribute
+      const stationMatch = (c.station||'').match(/Station\s*(\d)/i);
+      const stNum = stationMatch ? 's'+stationMatch[1] : 's5';
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.style.cssText = 'overflow:hidden;position:relative;background:white;border-radius:16px;box-shadow:0 2px 24px rgba(26,53,48,.07);border:1px solid rgba(159,208,188,.2);transition:transform .2s;cursor:default';
+      card.dataset.station = stNum;
+      card.dataset.type = 'decision';
+      card.innerHTML = `
+        <div style="padding:16px 18px 12px">
+          <h4 style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:#1a3530;margin-bottom:7px">${escHtml(tc.title||'Clinical case')}</h4>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:8px">
+            <span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#e4eefa;color:#3a68b0">${escHtml(c.station||'')}</span>
+            <span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#d8f5eb;color:#2d8a65">Decision</span>
+            <span style="font-size:.6rem;font-family:'DM Mono',monospace;padding:2px 7px;border-radius:6px;background:#d8f5eb;color:#2d8a65">Live</span>
+          </div>
+        </div>
+        <p style="font-size:.74rem;color:#578a7e;line-height:1.55;padding:0 18px 12px">${escHtml((tc.scenario||'').slice(0,150))}…</p>
+        <div style="position:absolute;inset:0;background:rgba(248,252,251,.93);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer" onclick="openGate()">
+          <span style="font-size:1.3rem">🔐</span>
+          <span style="font-size:.68rem;font-family:'DM Mono',monospace;color:#8860c0;letter-spacing:1px;text-transform:uppercase">Register to access</span>
+          <span style="font-size:.66rem;color:#578a7e">Free · No payment required</span>
+        </div>`;
+      grid.appendChild(card);
+    });
+  } catch(e) {
+    // Silent fail — static cases still visible
+  }
+}
+function escHtml(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+window.addEventListener('load', loadLiveCases);
+
 // Token validated server-side in Netlify Function — client-side is UX only.
 let _aUnlocked=false,_aToken='';
 function adminAuth(){
