@@ -103,8 +103,8 @@ Keep only:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-opus-4-6',
-        max_tokens: 800,
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1100,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
       })
