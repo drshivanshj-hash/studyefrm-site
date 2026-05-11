@@ -1,8 +1,7 @@
 // process-case.js
-// Netlify Function: dual-output case processing
+// Netlify Function: single-output case processing
 //
-// OUTPUT 1 — fullAnalysis: complete EFRM OSCE master chat format (for admin learning)
-// OUTPUT 2 — teachingCard: stripped universal error-pattern format (for website publishing)
+// OUTPUT 1 — fullAnalysis: complete EFRM OSCE master chat format 
 //
 // ENV VARS REQUIRED:
 //   ANTHROPIC_API_KEY  — Claude API key
@@ -48,10 +47,10 @@ OUTPUT STRUCTURE:
         "domainNumber": 1,
         "domainTitle": "domain name",
         "pico": "PICO question for this decision point",
-        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line bullet points",
-        "clinicalDecisionMade": "what was done / decided in this case in bullet points format",
+        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - bullet points not sentences",
+        "clinicalDecisionMade": "what was done / decided in this case in bullet points format not sentences",
         "guidelineVerdict": "aligned / deviation / gap",
-        "verdictExplanation": "why — referenced to guideline in the format guideline - year - bullet point",
+        "verdictExplanation": "why — referenced to guideline in the format guideline - year - bullet point not sentences",
        "topExaminerProbes": [
   {
     "question": "...",
@@ -67,29 +66,18 @@ OUTPUT STRUCTURE:
   }
 ]
   },
-  "teachingCard": {
-    "title": "brief anonymised clinical title",
-    "station": "${station || 'unspecified'}",
-    "scenario": "anonymised clinical scenario — no names, no exact dates, no locations below country level",
-    "commonError": "the universal clinical error any practitioner might make — framed impersonally",
-    "eshreAnchor": "the specific ESHRE guideline + year + what it says",
-    "nextStepGaps": ["gap 1", "gap 2", "gap 3"],
-    "examinerChallenges": ["question 1", "question 2", "question 3"]
-  }
 }
 
 RULES:
 - fullAnalysis should be concise, structured, and educationally high-yield
-- teachingCard is for public website — universal, anonymised, no personal clinical detail
+- If response risks truncation, prioritize completing valid JSON over elaboration
 - domains: EXACTLY 3 highest-yield domains only
 - EXACTLY 3 questions per domain in topExaminerProbes
 - keyErrorsAndLearning: maximum 6 items, 2 per domains discussed
-- modelAnswer: maximum 60 words
+- modelAnswer: maximum 50 words
 - Every verdict must reference a specific guideline
-- Keep evidenceBenchmark concise, structured, in bullet points, maximum 70 words
-- Keep verdictExplanation crisp, short, high yield, in bullet points
-- examinerChallenges must be phrased as examiner questions (second person, interrogative)
-- commonError must be framed as something ANY clinician could do — not "you did X"
+- Keep evidenceBenchmark concise, structured, in bullet points, maximum 60 words, no sentences
+- Keep verdictExplanation crisp, short, high yield, in bullet points, no sentences
 - modelAnswer in topExaminerProbes must include the ESHRE guideline name and year`;
 
   const userPrompt = `EFRM Station: ${station || 'unspecified'}
@@ -151,8 +139,7 @@ Keep only:
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      fullAnalysis: parsed.fullAnalysis,
-      teachingCard: parsed.teachingCard
+      fullAnalysis: parsed.fullAnalysis
     })
   };
 };
