@@ -82,12 +82,12 @@ RULES:
 - fullAnalysis should be concise, structured, and educationally high-yield
 - teachingCard is for public website — universal, anonymised, no personal clinical detail
 - domains: EXACTLY 3 highest-yield domains only
-- EXACTLY 3 questions per domain in topExaminerProbes: 
-- keyErrorsAndLearning: maximum 7 items
-- modelAnswer: maximum 80 words
+- EXACTLY 3 questions per domain in topExaminerProbes
+- keyErrorsAndLearning: maximum 6 items, 2 per domains discussed
+- modelAnswer: maximum 60 words
 - Every verdict must reference a specific guideline
 - Keep evidenceBenchmark concise, structured, in bullet points, maximum 70 words
-- Keep verdictExplanation crisp, short, high yield
+- Keep verdictExplanation crisp, short, high yield, in bullet points
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do — not "you did X"
 - modelAnswer in topExaminerProbes must include the ESHRE guideline name and year`;
@@ -115,7 +115,7 @@ Keep only:
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5',
-        max_tokens: 3500,
+        max_tokens: 3200,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
       })
