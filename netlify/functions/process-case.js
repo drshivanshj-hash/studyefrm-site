@@ -88,7 +88,7 @@ RULES:
 Raw clinical notes:
 ${sanitised}
 
-Produce concise output optimized for fast response time.
+Produce concise output optimized for fast response time.`;
 
   let claudeResponse;
   try {
