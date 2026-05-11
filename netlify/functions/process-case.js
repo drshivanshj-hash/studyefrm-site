@@ -89,11 +89,6 @@ Raw clinical notes:
 ${sanitised}
 
 Produce concise output optimized for fast response time.
-Keep only:
-- key diagnosis
-- core reasoning
-- ESHRE-aligned management
-- 3 teaching points`;
 
   let claudeResponse;
   try {
@@ -128,7 +123,12 @@ Keep only:
   let parsed;
   try {
     const cleaned = rawOutput.replace(/```json|```/g, '').trim();
-    parsed = JSON.parse(cleaned);
+   const firstBrace = cleaned.indexOf('{');
+const lastBrace = cleaned.lastIndexOf('}');
+
+const repaired = cleaned.slice(firstBrace, lastBrace + 1);
+
+parsed = JSON.parse(repaired);
   } catch {
     // Return raw for manual review if JSON parse fails
     return {
