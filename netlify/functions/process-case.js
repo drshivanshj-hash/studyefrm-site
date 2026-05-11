@@ -87,9 +87,7 @@ Raw clinical notes:
 ${sanitised}
 
 Produce concise output optimized for fast response time.
-
-Return ONLY valid raw JSON.
-Do NOT wrap output in markdown
+Return raw JSON only.
 
   let claudeResponse;
   try {
