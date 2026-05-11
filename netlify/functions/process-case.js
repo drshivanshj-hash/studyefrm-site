@@ -1,11 +1,12 @@
 // process-case.js
-// Netlify Function: single-output case processing
+// Netlify Function: dual-output case processing
 //
-// OUTPUT 1 — fullAnalysis: complete EFRM OSCE master chat format 
+// OUTPUT 1 - fullAnalysis: complete EFRM OSCE master chat format (for admin learning)
+// OUTPUT 2 - teachingCard: stripped universal error-pattern format (for website publishing)
 //
 // ENV VARS REQUIRED:
-//   ANTHROPIC_API_KEY  — Claude API key
-//   ADMIN_TOKEN        — secret admin password (set in Netlify dashboard)
+//   ANTHROPIC_API_KEY  - Claude API key
+//   ADMIN_TOKEN        - secret admin password (set in Netlify dashboard)
 
 exports.handler = async (event) => {
 
@@ -27,7 +28,7 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: 'rawNotes too short' };
   }
 
-  // Light identity sanitisation — names like Pinki/Parmeshwar, titles
+  // Light identity sanitisation - names like Pinki/Parmeshwar, titles
   const sanitised = rawNotes
     .replace(/\b[A-Z][a-z]+\/[A-Z][a-z]+\b/g, '[patient/partner]')
     .replace(/\b(Mr|Mrs|Ms|Dr|Master|Miss)\s+[A-Z][a-z]+\b/g, '[patient]')
@@ -35,7 +36,7 @@ exports.handler = async (event) => {
 
   const systemPrompt = `You are an expert EFRM OSCE educator and reproductive medicine subspecialist.
 You receive raw clinical notes from an IVF clinic.
-You produce one structured JSON response — no markdown, no preamble, valid JSON only.
+You produce TWO separate outputs in a single JSON response - no markdown, no preamble, valid JSON only.
 
 OUTPUT STRUCTURE:
 {
@@ -47,10 +48,10 @@ OUTPUT STRUCTURE:
         "domainNumber": 1,
         "domainTitle": "domain name",
         "pico": "PICO question for this decision point",
-        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - bullet points not sentences",
-        "clinicalDecisionMade": "what was done / decided in this case in bullet points format not sentences",
+        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line bullet points, no sentences",
+        "clinicalDecisionMade": "what was done / decided in this case in bullet points format, no sentences",
         "guidelineVerdict": "aligned / deviation / gap",
-        "verdictExplanation": "why — referenced to guideline in the format guideline - year - bullet point not sentences",
+        "verdictExplanation": "why - referenced to guideline in the format guideline - year - bullet point, no sentences",
        "topExaminerProbes": [
   {
     "question": "...",
@@ -61,29 +62,42 @@ OUTPUT STRUCTURE:
     ],
    "keyErrorsAndLearning": [
   {
-    "error": "error description",
-    "guidelineRef": "guideline citation"
+    "error": "error description, framed impersonally as something any clinician could do, no sentences",
+    "learning": "the specific learning point to address this error, no sentences, high-yield, referenced to guideline in the format guideline - year - bullet point, no sentences",
+    "guidelineRef": "guideline citation, e.g. ESHRE 2020"
   }
 ]
   },
+  "teachingCard": {
+    "title": "brief anonymised clinical title",
+    "station": "${station || 'unspecified'}",
+    "scenario": "anonymised clinical scenario - no names, no exact dates, no locations below country level",
+    "commonError": "the universal clinical error any practitioner might make - framed impersonally, no sentences",
+    "eshreAnchor": "the specific ESHRE guideline + year + what it says, in a single line, no sentences",
+    "nextStepGaps": ["gap 1", "gap 2", "gap 3"],
+    "examinerChallenges": ["question 1", "question 2", "question 3"]
+  }
 }
 
 RULES:
 - fullAnalysis should be concise, structured, and educationally high-yield
+- teachingCard is for public website - universal, anonymised, no personal clinical detail, no sentences, high-yield, focused on key learning points
 - If response risks truncation, prioritize completing valid JSON over elaboration
 - Prioritize concise completion over exhaustive detail
 - Prefer abbreviated outputs to avoid truncation
 - Return compact valid JSON rapidly
-- domains: EXACTLY 3 highest-yield domains only
-- EXACTLY 3 questions per domain in topExaminerProbes
-- keyErrorsAndLearning: maximum 6 highest-yield items total
-- modelAnswer: maximum 50 words
-- Every verdict must reference a specific guideline
-- Keep evidenceBenchmark concise, structured, in bullet points, maximum 60 words, no sentences
-- Keep verdictExplanation crisp, short, high yield, in bullet points, no sentences
+- domains: EXACTLY 3 highest-yield domains only, no more, no less
+- EXACTLY 3 questions per domain in topExaminerProbes, no more, no less
+- keyErrorsAndLearning: maximum 6 items, 2 per domains discussed, no more, no less
+- modelAnswer: maximum 60 words, focused on key learning, no sentences, must include specific guideline reference
+- Every verdict must reference a specific guideline, no generic statements
+- Keep evidenceBenchmark concise, structured, in bullet points, maximum 70 words, no sentences
+- Keep verdictExplanation crisp, short, high yield, in bullet points, maximum 50 words, no sentences
+- examinerChallenges must be phrased as examiner questions (second person, interrogative)
+- commonError must be framed as something ANY clinician could do - not "you did X"
 - modelAnswer in topExaminerProbes must include the ESHRE guideline name and year`;
 
-  const userPrompt = `EFRM Station: ${station || 'unspecified'}
+  const userPrompt = `EFRM Station: ${station || 'unspecified'}` + `
 
 Raw clinical notes:
 ${sanitised}
@@ -123,12 +137,7 @@ Produce concise output optimized for fast response time.`;
   let parsed;
   try {
     const cleaned = rawOutput.replace(/```json|```/g, '').trim();
-   const firstBrace = cleaned.indexOf('{');
-const lastBrace = cleaned.lastIndexOf('}');
-
-const repaired = cleaned.slice(firstBrace, lastBrace + 1);
-
-parsed = JSON.parse(repaired);
+    parsed = JSON.parse(cleaned);
   } catch {
     // Return raw for manual review if JSON parse fails
     return {
@@ -142,7 +151,8 @@ parsed = JSON.parse(repaired);
     statusCode: 200,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      fullAnalysis: parsed.fullAnalysis
+      fullAnalysis: parsed.fullAnalysis,
+      teachingCard: parsed.teachingCard
     })
   };
 };
