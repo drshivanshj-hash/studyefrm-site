@@ -104,7 +104,7 @@ Keep only:
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
-        max_tokens: 1800,
+        max_tokens: 1600,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
       })
