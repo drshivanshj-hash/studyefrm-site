@@ -42,6 +42,8 @@ OUTPUT STRUCTURE:
 {
   "fullAnalysis": {
     "patientSummary": "brief anonymised patient summary",
+    Include high yield, most relevant domains only.
+Do not generate more than 3 domains under any circumstance.
     "domains": [
       {
         "domainNumber": 1,
@@ -59,7 +61,7 @@ OUTPUT STRUCTURE:
     ],
     "keyErrorsAndLearning": ["error 1", "error 2", "error 3"],
     "top3ExaminerQuestions": [
-      { "station": "Station N", "question": "examiner question", "modelAnswer": "model answer referencing ESHRE" }
+      { "station": "Station N", "question": "examiner question", "modelAnswer": "concise ESHRE-based answer in 2-3 sentences maximum" }
     ]
   },
   "teachingCard": {
@@ -74,9 +76,11 @@ OUTPUT STRUCTURE:
 }
 
 RULES:
-- fullAnalysis is for the clinician's private learning — be thorough, honest, flag every error
+- fullAnalysis is for the clinician's private learning — - fullAnalysis should be concise, structured, and educationally high-yield
 - teachingCard is for public website — universal, anonymised, no personal clinical detail
 - Every verdict must reference a specific guideline
+- Keep evidenceBenchmark concised, structured, in bullet points
+- Keep verdictExplanation crisp, short, high yield
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do — not "you did X"
 - modelAnswer in top3ExaminerQuestions must include the ESHRE guideline name and year`;
@@ -104,7 +108,7 @@ Keep only:
       },
       body: JSON.stringify({
         model: 'claude-sonnet-4-6',
-        max_tokens: 1600,
+        max_tokens: 1500,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
       })
