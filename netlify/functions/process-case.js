@@ -48,20 +48,24 @@ OUTPUT STRUCTURE:
         "domainNumber": 1,
         "domainTitle": "domain name",
         "pico": "PICO question for this decision point",
-        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guideline and what it says",
+        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line point",
         "clinicalDecisionMade": "what was done / decided in this case",
         "guidelineVerdict": "aligned / deviation / gap",
         "verdictExplanation": "why — referenced to guideline",
-        "examinerProbes": ["probe 1", "probe 2", "probe 3"]
+       "topExaminerProbes": [
+  {
+    "question": "...",
+    "modelAnswer": "..."
+  }
+]
       }
     ],
-    "scorecard": [
-      { "decision": "decision description", "verdict": "✅ or ⚠️ or ❌", "guidelineRef": "guideline citation" }
-    ],
-    "keyErrorsAndLearning": ["error 1", "error 2", "error 3"],
-    "top3ExaminerQuestions": [
-      { "station": "Station N", "question": "examiner question", "modelAnswer": "concise ESHRE-based answer in 2-3 sentences maximum" }
-    ]
+   "keyErrorsAndLearning": [
+  {
+    "error": "error description",
+    "guidelineRef": "guideline citation"
+  }
+]
   },
   "teachingCard": {
     "title": "brief anonymised clinical title",
@@ -77,18 +81,16 @@ OUTPUT STRUCTURE:
 RULES:
 - fullAnalysis should be concise, structured, and educationally high-yield
 - teachingCard is for public website — universal, anonymised, no personal clinical detail
-- domains: EXACTLY 3
-- examinerProbes: EXACTLY 3 per domain
-- scorecard: maximum 10 items
-- keyErrorsAndLearning: maximum 10 items
-- top3ExaminerQuestions: EXACTLY 3 questions only
-- modelAnswer: maximum 100 words
+- domains: EXACTLY 3 highest-yield domains only
+- EXACTLY 3 questions per domain in topExaminerProbes: 
+- keyErrorsAndLearning: maximum 7 items
+- modelAnswer: maximum 60 words
 - Every verdict must reference a specific guideline
 - Keep evidenceBenchmark concise, structured, in bullet points, maximum 70 words
 - Keep verdictExplanation crisp, short, high yield
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do — not "you did X"
-- modelAnswer in top3ExaminerQuestions must include the ESHRE guideline name and year`;
+- modelAnswer in topExaminerProbes must include the ESHRE guideline name and year`;
 
   const userPrompt = `EFRM Station: ${station || 'unspecified'}
 
