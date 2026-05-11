@@ -87,11 +87,9 @@ Raw clinical notes:
 ${sanitised}
 
 Produce concise output optimized for fast response time.
-Keep only:
-- key diagnosis
-- core reasoning
-- ESHRE-aligned management
-- 3 teaching points`;
+
+Return ONLY valid raw JSON.
+Do NOT wrap output in markdown
 
   let claudeResponse;
   try {
