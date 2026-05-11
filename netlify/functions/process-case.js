@@ -80,9 +80,6 @@ RULES:
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do — not "you did X"
 - modelAnswer in top3ExaminerQuestions must include the ESHRE guideline name and year`;
-- keep total output concise and under 300 words
-- prioritize brevity over exhaustive explanation
-- avoid long markdown formatting  
 
   const userPrompt = `EFRM Station: ${station || 'unspecified'}
 
