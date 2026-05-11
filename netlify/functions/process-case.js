@@ -43,7 +43,6 @@ OUTPUT STRUCTURE:
   "fullAnalysis": {
     "patientSummary": "brief anonymised patient summary",
     Include high yield, most relevant domains only.
-Do not generate more than 3 domains under any circumstance.
     "domains": [
       {
         "domainNumber": 1,
@@ -76,10 +75,10 @@ Do not generate more than 3 domains under any circumstance.
 }
 
 RULES:
-- fullAnalysis is for the clinician's private learning — - fullAnalysis should be concise, structured, and educationally high-yield
+- fullAnalysis should be concise, structured, and educationally high-yield
 - teachingCard is for public website — universal, anonymised, no personal clinical detail
 - Every verdict must reference a specific guideline
-- Keep evidenceBenchmark concised, structured, in bullet points
+- Keep evidenceBenchmark concise, structured, in bullet points
 - Keep verdictExplanation crisp, short, high yield
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do — not "you did X"
@@ -107,7 +106,7 @@ Keep only:
         'anthropic-version': '2023-06-01'
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
+        model: 'claude-haiku-4-5',
         max_tokens: 1500,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
