@@ -77,8 +77,14 @@ OUTPUT STRUCTURE:
 RULES:
 - fullAnalysis should be concise, structured, and educationally high-yield
 - teachingCard is for public website — universal, anonymised, no personal clinical detail
+- domains: EXACTLY 3
+- examinerProbes: EXACTLY 3 per domain
+- scorecard: maximum 10 items
+- keyErrorsAndLearning: maximum 10 items
+- top3ExaminerQuestions: EXACTLY 3 questions only
+- modelAnswer: maximum 100 words
 - Every verdict must reference a specific guideline
-- Keep evidenceBenchmark concise, structured, in bullet points
+- Keep evidenceBenchmark concise, structured, in bullet points, maximum 70 words
 - Keep verdictExplanation crisp, short, high yield
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do — not "you did X"
