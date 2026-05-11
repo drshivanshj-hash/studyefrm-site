@@ -80,13 +80,21 @@ RULES:
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do — not "you did X"
 - modelAnswer in top3ExaminerQuestions must include the ESHRE guideline name and year`;
+- keep total output concise and under 300 words
+- prioritize brevity over exhaustive explanation
+- avoid long markdown formatting  
 
   const userPrompt = `EFRM Station: ${station || 'unspecified'}
 
 Raw clinical notes:
 ${sanitised}
 
-Produce both fullAnalysis and teachingCard as specified.`;
+Produce concise output optimized for fast response time.
+Keep only:
+- key diagnosis
+- core reasoning
+- ESHRE-aligned management
+- 3 teaching points`;
 
   let claudeResponse;
   try {
@@ -99,7 +107,7 @@ Produce both fullAnalysis and teachingCard as specified.`;
       },
       body: JSON.stringify({
         model: 'claude-opus-4-6',
-        max_tokens: 4000,
+        max_tokens: 800,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
       })
