@@ -48,10 +48,10 @@ OUTPUT STRUCTURE:
         "domainNumber": 1,
         "domainTitle": "domain name",
         "pico": "PICO question for this decision point",
-        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line point",
-        "clinicalDecisionMade": "what was done / decided in this case",
+        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line bullet points",
+        "clinicalDecisionMade": "what was done / decided in this case in bullet points format",
         "guidelineVerdict": "aligned / deviation / gap",
-        "verdictExplanation": "why — referenced to guideline",
+        "verdictExplanation": "why — referenced to guideline in the format guideline - year - bullet point",
        "topExaminerProbes": [
   {
     "question": "...",
@@ -84,7 +84,7 @@ RULES:
 - domains: EXACTLY 3 highest-yield domains only
 - EXACTLY 3 questions per domain in topExaminerProbes: 
 - keyErrorsAndLearning: maximum 7 items
-- modelAnswer: maximum 60 words
+- modelAnswer: maximum 80 words
 - Every verdict must reference a specific guideline
 - Keep evidenceBenchmark concise, structured, in bullet points, maximum 70 words
 - Keep verdictExplanation crisp, short, high yield
@@ -115,7 +115,7 @@ Keep only:
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5',
-        max_tokens: 3000,
+        max_tokens: 3500,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
       })
