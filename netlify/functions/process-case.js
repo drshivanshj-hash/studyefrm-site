@@ -35,7 +35,7 @@ exports.handler = async (event) => {
 
   const systemPrompt = `You are an expert EFRM OSCE educator and reproductive medicine subspecialist.
 You receive raw clinical notes from an IVF clinic.
-You produce TWO separate outputs in a single JSON response — no markdown, no preamble, valid JSON only.
+You produce one structured JSON response — no markdown, no preamble, valid JSON only.
 
 OUTPUT STRUCTURE:
 {
@@ -71,9 +71,12 @@ OUTPUT STRUCTURE:
 RULES:
 - fullAnalysis should be concise, structured, and educationally high-yield
 - If response risks truncation, prioritize completing valid JSON over elaboration
+- Prioritize concise completion over exhaustive detail
+- Prefer abbreviated outputs to avoid truncation
+- Return compact valid JSON rapidly
 - domains: EXACTLY 3 highest-yield domains only
 - EXACTLY 3 questions per domain in topExaminerProbes
-- keyErrorsAndLearning: maximum 6 items, 2 per domains discussed
+- keyErrorsAndLearning: maximum 6 highest-yield items total
 - modelAnswer: maximum 50 words
 - Every verdict must reference a specific guideline
 - Keep evidenceBenchmark concise, structured, in bullet points, maximum 60 words, no sentences
