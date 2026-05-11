@@ -87,6 +87,11 @@ Raw clinical notes:
 ${sanitised}
 
 Produce concise output optimized for fast response time.
+Keep only:
+- key diagnosis
+- core reasoning
+- ESHRE-aligned management
+- 3 teaching points`;
 
   let claudeResponse;
   try {
