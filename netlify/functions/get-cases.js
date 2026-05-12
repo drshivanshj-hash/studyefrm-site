@@ -11,7 +11,10 @@ exports.handler = async (event) => {
   }
 
   try {
-    const store = getStore('teaching-cards');
+    const store = getStore('teaching-cards', {
+  siteID: process.env.NETLIFY_SITE_ID,
+  token: process.env.NETLIFY_AUTH_TOKEN
+});
 
     // Get ordered index
     let index = [];
