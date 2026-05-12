@@ -48,22 +48,27 @@ OUTPUT STRUCTURE:
         "domainNumber": 1,
         "domainTitle": "domain name",
         "pico": "PICO question for this decision point",
-        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line bullet points, no sentences",
-        "clinicalDecisionMade": "what was done / decided in this case in bullet points format, no sentences",
+        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line bullet points, telegraphic bullet fragments",
+        "clinicalDecisionMade": "what was done / decided in this case in bullet points format, telegraphic bullet fragments",
         "guidelineVerdict": "aligned / deviation / gap",
-        "verdictExplanation": "why - referenced to guideline in the format guideline - year - bullet point, no sentences",
+        "verdictExplanation": "why - referenced to guideline in the format guideline - year - bullet point, telegraphic bullet fragments",
        "topExaminerProbes": [
   {
     "question": "...",
-    "modelAnswer": "..."
+    "answerPearls": [
+  "ESHRE 2022 — cystectomy risk",
+  "ESHRE 2020 — freeze-all",
+  "ASRM 2012 — diminished reserve"
+ "..."
+   ]
   }
 ]
       }
     ],
    "keyErrorsAndLearning": [
   {
-    "error": "error description, framed impersonally as something any clinician could do, no sentences",
-    "learning": "the specific learning point to address this error, no sentences, high-yield, referenced to guideline in the format guideline - year - bullet point, no sentences",
+    "error": "error description, framed impersonally as something any clinician could do, telegraphic bullet fragments",
+    "learning": "the specific learning point to address this error, no sentences, high-yield, referenced to guideline in the format guideline - year - bullet point, telegraphic bullet fragments",
     "guidelineRef": "guideline citation, e.g. ESHRE 2020"
   }
 ]
@@ -72,8 +77,8 @@ OUTPUT STRUCTURE:
     "title": "brief anonymised clinical title",
     "station": "${station || 'unspecified'}",
     "scenario": "anonymised clinical scenario - no names, no exact dates, no locations below country level",
-    "commonError": "the universal clinical error any practitioner might make - framed impersonally, no sentences",
-    "eshreAnchor": "the specific ESHRE guideline + year + what it says, in a single line, no sentences",
+    "commonError": "the universal clinical error any practitioner might make - framed impersonally, telegraphic bullet fragments",
+    "eshreAnchor": "the specific ESHRE guideline + year + what it says, in a single line, telegraphic bullet fragments",
     "nextStepGaps": ["gap 1", "gap 2", "gap 3"],
     "examinerChallenges": ["question 1", "question 2", "question 3"]
   }
@@ -81,21 +86,21 @@ OUTPUT STRUCTURE:
 
 RULES:
 - fullAnalysis should be concise, structured, and educationally high-yield
-- teachingCard is for public website - universal, anonymised, no personal clinical detail, no sentences, high-yield, focused on key learning points
+- teachingCard is for public website - universal, anonymised, no personal clinical detail, telegraphic bullet fragments, high-yield, focused on key learning points
 - If response risks truncation, prioritize completing valid JSON over elaboration
 - Prioritize concise completion over exhaustive detail
 - Prefer abbreviated outputs to avoid truncation
 - Return compact valid JSON rapidly
 - domains: EXACTLY 3 highest-yield domains only, no more, no less
-- EXACTLY 3 questions per domain in topExaminerProbes, no more, no less
+- UP TO 2 highest-yield questions per domain in topExaminerProbes, 
 - keyErrorsAndLearning: maximum 6 items, 2 per domains discussed, no more, no less
-- modelAnswer: maximum 60 words, focused on key learning, no sentences, must include specific guideline reference
+- answerPearls: array of 3 telegraphic guideline-linked fragments, focused on key learning, no sentences, must include specific guideline reference, telegraphic bullet fragments
 - Every verdict must reference a specific guideline, no generic statements
-- Keep evidenceBenchmark concise, structured, in bullet points, maximum 70 words, no sentences
-- Keep verdictExplanation crisp, short, high yield, in bullet points, maximum 50 words, no sentences
+- Keep evidenceBenchmark concise, structured, in bullet points, maximum 50 words, telegraphic bullet fragments
+- Keep verdictExplanation crisp, short, high yield, in bullet points, maximum 50 words, telegraphic bullet fragments
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do - not "you did X"
-- modelAnswer in topExaminerProbes must include the ESHRE guideline name and year`;
+- answerPearls in topExaminerProbes must include the ESHRE guideline name and year`;
 
   const userPrompt = `EFRM Station: ${station || 'unspecified'}` + `
 
