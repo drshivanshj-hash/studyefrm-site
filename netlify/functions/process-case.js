@@ -47,11 +47,10 @@ OUTPUT STRUCTURE:
       {
         "domainNumber": 1,
         "domainTitle": "domain name",
-        "pico": "PICO question for this decision point",
-        "evidenceBenchmark": "relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line bullet points, telegraphic bullet fragments",
         "clinicalDecisionMade": "what was done / decided in this case in bullet points format, telegraphic bullet fragments",
         "guidelineVerdict": "aligned / deviation / gap",
-        "verdictExplanation": "why - referenced to guideline in the format guideline - year - bullet point, telegraphic bullet fragments",
+        "verdictExplanation": "why - referenced to relevant ESHRE/RCOG/NICE/ASRM guidelines and what they say in the format guideline - year - single line bullet points, telegraphic bullet fragments",
+        "pico": "PICO question for this decision point",
        "topExaminerProbes": [
   {
     "question": "...",
@@ -68,7 +67,7 @@ OUTPUT STRUCTURE:
    "keyErrorsAndLearning": [
   {
     "error": "error description, framed impersonally as something any clinician could do, telegraphic bullet fragments",
-    "learning": "the specific learning point to address this error, no sentences, high-yield, referenced to guideline in the format guideline - year - bullet point, telegraphic bullet fragments",
+    "learning": "the specific learning point to address this error, high-yield, referenced to guideline in the format guideline - year - bullet point, telegraphic bullet fragments",
     "guidelineRef": "guideline citation, e.g. ESHRE 2020"
   }
 ]
@@ -93,10 +92,9 @@ RULES:
 - Return compact valid JSON rapidly
 - domains: EXACTLY 3 highest-yield domains only, no more, no less
 - UP TO 2 highest-yield questions per domain in topExaminerProbes, 
-- keyErrorsAndLearning: maximum 6 items, 2 per domains discussed, no more, no less
+- keyErrorsAndLearning: highest-yield, maximum 3 items, 1 per domains discussed, no more, no less
 - answerPearls: array of 3 telegraphic guideline-linked fragments, focused on key learning, no sentences, must include specific guideline reference, telegraphic bullet fragments
 - Every verdict must reference a specific guideline, no generic statements
-- Keep evidenceBenchmark concise, structured, in bullet points, maximum 50 words, telegraphic bullet fragments
 - Keep verdictExplanation crisp, short, high yield, in bullet points, maximum 50 words, telegraphic bullet fragments
 - examinerChallenges must be phrased as examiner questions (second person, interrogative)
 - commonError must be framed as something ANY clinician could do - not "you did X"
@@ -120,7 +118,7 @@ Produce concise output optimized for fast response time.`;
       },
       body: JSON.stringify({
         model: 'claude-haiku-4-5',
-        max_tokens: 3200,
+        max_tokens: 3300,
         messages: [{ role: 'user', content: userPrompt }],
         system: systemPrompt
       })
