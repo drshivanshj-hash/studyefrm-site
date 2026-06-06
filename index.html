@@ -147,6 +147,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,252,251,
 
 footer{background:var(--ink);color:rgba(255,255,255,.3);text-align:center;padding:22px;font-size:.7rem;border-top:1px solid rgba(255,255,255,.04)}
 footer strong{color:var(--mint)}
+.lms-cta{background:linear-gradient(135deg,#1a3530,#243f3a)}
+.lms-cta-in{max-width:1120px;margin:0 auto;padding:34px 56px;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.lms-cta-eye{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--mint);margin-bottom:8px}
+.lms-cta h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:6px;line-height:1.15}
+.lms-cta p{font-size:.8rem;color:rgba(255,255,255,.62);line-height:1.7;max-width:560px;font-weight:300}
+.lms-cta-btn{flex-shrink:0;background:var(--teal);color:#fff;text-decoration:none;font-size:.84rem;font-weight:600;padding:13px 26px;border-radius:26px;box-shadow:0 4px 18px rgba(79,158,172,.3);transition:all .25s;white-space:nowrap}
+.lms-cta-btn:hover{background:var(--ocean);transform:translateY(-2px)}
+@media(max-width:860px){.lms-cta-in{padding:28px 24px}}
 
 @media(max-width:860px){
   .hero{grid-template-columns:1fr;padding:88px 24px 48px;gap:28px}
@@ -162,28 +170,7 @@ footer strong{color:var(--mint)}
 </head>
 <body>
 
-<!-- GATE MODAL -->
-<div id="gate-modal">
-  <div class="gate-box">
-    <div id="gate-form-wrap">
-      <div class="gate-lock">🔐</div>
-      <h3>Request Access</h3>
-      <p>Submit your details. Access is reviewed and sent to your email within 24 hours. No payment required.</p>
-      <input class="gate-input" type="email" id="gate-email" placeholder="your@email.com" required>
-      <input class="gate-input" type="text" id="gate-name" placeholder="Full name">
-      <input class="gate-input" type="text" id="gate-country" placeholder="Country of training / practice">
-      <input class="gate-input" type="text" id="gate-stage" placeholder="Where are you in EFRM? (e.g. Part 1 prep, Part 2 prep, exploring)">
-      <button class="gate-btn" onclick="submitGate()">Request Access →</button>
-      <span class="gate-close" onclick="closeGate()">Maybe later</span>
-    </div>
-    <div id="gate-success" style="display:none;text-align:center;padding:8px 0">
-      <div style="font-size:2rem;margin-bottom:14px">✅</div>
-      <h3 style="margin-bottom:10px">Request received</h3>
-      <p style="font-size:.82rem;color:var(--soft);line-height:1.75;margin-bottom:16px">Access will be sent to your email within 24 hours after review.</p>
-      <span class="gate-close" onclick="closeGate()">Close</span>
-    </div>
-  </div>
-</div>
+<!-- Access is handled on the StudyEFRM LMS -> https://studyefrm-lms.netlify.app -->
 
 <nav>
   <span class="nav-brand" onclick="showPage('home')">StudyEFRM</span>
@@ -273,6 +260,7 @@ footer strong{color:var(--mint)}
     <p>The EFRM does not reward memory alone. It rewards knowledge applied through structured reasoning — the ability to work through unfamiliar clinical presentations, anchor every decision to current evidence, acknowledge uncertainty correctly, and defend a plan under adversarial examination. <em>That is what this system trains.</em></p>
   </div>
 </div>
+<div class="lms-cta"><div class="lms-cta-in"><div><div class="lms-cta-eye">StudyEFRM LMS &middot; studyefrm-lms.netlify.app</div><h3>Start your EFRM Part 2 preparation</h3><p>Two orientation modules and the full curriculum map are open access. Get access for the gated clinical curriculum and the Part 2 OSCE case library.</p></div><a class="lms-cta-btn" href="https://studyefrm-lms.netlify.app">Get Access &rarr;</a></div></div>
 <footer>StudyEFRM · <strong>A Dedicated EFRM Preparation Platform</strong> · Dr Shivansh Jaiswal · 2026</footer>
 </div>
 
@@ -329,6 +317,7 @@ footer strong{color:var(--mint)}
   </div>
 </div>
 </section>
+<div class="lms-cta"><div class="lms-cta-in"><div><div class="lms-cta-eye">StudyEFRM LMS &middot; studyefrm-lms.netlify.app</div><h3>Start your EFRM Part 2 preparation</h3><p>Two orientation modules and the full curriculum map are open access. Get access for the gated clinical curriculum and the Part 2 OSCE case library.</p></div><a class="lms-cta-btn" href="https://studyefrm-lms.netlify.app">Get Access &rarr;</a></div></div>
 <footer>StudyEFRM · <strong>Dr Shivansh Jaiswal · EFOG-EBCOG · EFRM Part 1 Passed 2026</strong></footer>
 </div>
 
@@ -442,6 +431,7 @@ footer strong{color:var(--mint)}
   <div style="background:var(--ink);border-radius:12px;padding:16px 20px" class="fade-up"><p style="font-size:.76rem;color:rgba(255,255,255,.62);line-height:1.8">Always close Station 7 with: <strong style="color:var(--mint)">"Based on the methodological limitations — specifically [name 1–2] — I would not change my clinical practice yet. I would be more persuaded by a [multicentre RCT / larger sample / longer follow-up]."</strong></p></div>
 </div>
 </section>
+<div class="lms-cta"><div class="lms-cta-in"><div><div class="lms-cta-eye">StudyEFRM LMS &middot; studyefrm-lms.netlify.app</div><h3>Start your EFRM Part 2 preparation</h3><p>Two orientation modules and the full curriculum map are open access. Get access for the gated clinical curriculum and the Part 2 OSCE case library.</p></div><a class="lms-cta-btn" href="https://studyefrm-lms.netlify.app">Get Access &rarr;</a></div></div>
 <footer>StudyEFRM OSCE Preparation · <strong>Station 7 is the differentiator.</strong> Practise abstract appraisal every week.</footer>
 </div>
 
@@ -582,6 +572,7 @@ footer strong{color:var(--mint)}
   </div>
 </div>
 </section>
+<div class="lms-cta"><div class="lms-cta-in"><div><div class="lms-cta-eye">StudyEFRM LMS &middot; studyefrm-lms.netlify.app</div><h3>Start your EFRM Part 2 preparation</h3><p>Two orientation modules and the full curriculum map are open access. Get access for the gated clinical curriculum and the Part 2 OSCE case library.</p></div><a class="lms-cta-btn" href="https://studyefrm-lms.netlify.app">Get Access &rarr;</a></div></div>
 <footer>StudyEFRM Part 1 · <strong>Next sitting: March 2027.</strong> Full bank launches Q4 2026.</footer>
 </div>
 
@@ -716,6 +707,7 @@ footer strong{color:var(--mint)}
   </div>
 </div>
 </section>
+<div class="lms-cta"><div class="lms-cta-in"><div><div class="lms-cta-eye">StudyEFRM LMS &middot; studyefrm-lms.netlify.app</div><h3>Start your EFRM Part 2 preparation</h3><p>Two orientation modules and the full curriculum map are open access. Get access for the gated clinical curriculum and the Part 2 OSCE case library.</p></div><a class="lms-cta-btn" href="https://studyefrm-lms.netlify.app">Get Access &rarr;</a></div></div>
 <footer>Real IVF Clinic Cases · StudyEFRM · <strong>Every clinical decision is a potential OSCE station.</strong></footer>
 </div>
 
@@ -780,6 +772,7 @@ footer strong{color:var(--mint)}
   </div>
 </div>
 </section>
+<div class="lms-cta"><div class="lms-cta-in"><div><div class="lms-cta-eye">StudyEFRM LMS &middot; studyefrm-lms.netlify.app</div><h3>Start your EFRM Part 2 preparation</h3><p>Two orientation modules and the full curriculum map are open access. Get access for the gated clinical curriculum and the Part 2 OSCE case library.</p></div><a class="lms-cta-btn" href="https://studyefrm-lms.netlify.app">Get Access &rarr;</a></div></div>
 <footer>StudyEFRM Mentorship · <strong>Cohort-based · Structured · Capped at 10.</strong></footer>
 </div>
 
@@ -868,7 +861,7 @@ function initFade(){
   });
 }
 initFade();
-function openGate(){document.getElementById('gate-modal').classList.add('open')}
+function openGate(){window.location.href='https://studyefrm-lms.netlify.app'}
 function closeGate(){
   document.getElementById('gate-modal').classList.remove('open');
   // Reset form state for next open
